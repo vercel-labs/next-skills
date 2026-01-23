@@ -8,6 +8,7 @@ Agent skills for common Next.js workflows.
 |-------|-------------|
 | `upgrade` | Upgrade to the latest Next.js version following official migration guides |
 | `metadata` | Add SEO metadata to pages (Server Components only) |
+| `og-image` | Generate dynamic Open Graph images using next/og |
 | `hydration-error` | Diagnose and fix React hydration errors |
 | `best-practices` | Next.js best practices (runtime selection, async params) |
 | `debug-tricks` | Speed up debugging - MCP endpoint, rebuild specific routes |
@@ -36,6 +37,7 @@ Once installed, invoke skills using slash commands:
 ```
 /upgrade
 /metadata
+/og-image
 /hydration-error
 /best-practices
 /debug-tricks
@@ -50,6 +52,7 @@ next-skills/
 ├── skills/
 │   ├── upgrade/SKILL.md
 │   ├── metadata/SKILL.md
+│   ├── og-image/SKILL.md
 │   ├── hydration-error/SKILL.md
 │   ├── best-practices/SKILL.md
 │   ├── debug-tricks/SKILL.md
