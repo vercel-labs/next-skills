@@ -11,6 +11,7 @@ Agent skills for common Next.js workflows.
 | `hydration-error` | Diagnose and fix React hydration errors |
 | `best-practices` | Next.js best practices (runtime selection, async params) |
 | `debug-tricks` | Speed up debugging - MCP endpoint, rebuild specific routes |
+| `directives` | Background knowledge: what 'use client', 'use server' actually mean (auto-applied) |
 
 ## Installation
 
@@ -40,7 +41,7 @@ Once installed, invoke skills using slash commands:
 /debug-tricks
 ```
 
-Skills are also automatically suggested by Claude when relevant to your task.
+**Background skills** (like `directives`) are automatically applied by Claude when relevant - they don't appear in the slash command menu but provide context to prevent common mistakes.
 
 ## Structure
 
@@ -51,7 +52,8 @@ next-skills/
 │   ├── metadata/SKILL.md
 │   ├── hydration-error/SKILL.md
 │   ├── best-practices/SKILL.md
-│   └── debug-tricks/SKILL.md
+│   ├── debug-tricks/SKILL.md
+│   └── directives/SKILL.md
 └── README.md
 ```
 
