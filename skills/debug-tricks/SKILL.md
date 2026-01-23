@@ -9,19 +9,80 @@ Tricks to speed up debugging Next.js applications.
 
 ## MCP Endpoint (Dev Server)
 
-In development, Next.js exposes a `/_next/mcp` endpoint for quick access to app state via MCP (Model Context Protocol).
+Next.js exposes a `/_next/mcp` endpoint in development for AI-assisted debugging via MCP (Model Context Protocol). Enabled by default with `experimental.mcpServer: true`.
+
+**Important**: Find the actual port of the running Next.js dev server (check terminal output or `package.json` scripts). Don't assume port 3000.
+
+### Request Format
+
+The endpoint uses JSON-RPC 2.0 over HTTP POST:
 
 ```bash
-curl http://localhost:3000/_next/mcp
+curl -X POST http://localhost:<port>/_next/mcp \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json, text/event-stream" \
+  -d '{
+    "jsonrpc": "2.0",
+    "id": "1",
+    "method": "tools/call",
+    "params": {
+      "name": "<tool-name>",
+      "arguments": {}
+    }
+  }'
 ```
 
-Get instant access to:
-- Build errors and warnings
-- All routes in the application
-- App configuration
-- Diagnostic information
+### Available Tools
 
-Faster than manually checking terminal output or browser console.
+#### `get_errors`
+Get current errors from dev server (build errors, runtime errors with source-mapped stacks):
+```json
+{ "name": "get_errors", "arguments": {} }
+```
+
+#### `get_routes`
+Discover all routes by scanning filesystem:
+```json
+{ "name": "get_routes", "arguments": {} }
+// Optional: { "name": "get_routes", "arguments": { "routerType": "app" } }
+```
+Returns: `{ "appRouter": ["/", "/api/users/[id]", ...], "pagesRouter": [...] }`
+
+#### `get_project_metadata`
+Get project path and dev server URL:
+```json
+{ "name": "get_project_metadata", "arguments": {} }
+```
+Returns: `{ "projectPath": "/path/to/project", "devServerUrl": "http://localhost:3000" }`
+
+#### `get_page_metadata`
+Get runtime metadata about current page render (requires active browser session):
+```json
+{ "name": "get_page_metadata", "arguments": {} }
+```
+Returns segment trie data showing layouts, boundaries, and page components.
+
+#### `get_logs`
+Get path to Next.js development log file:
+```json
+{ "name": "get_logs", "arguments": {} }
+```
+Returns path to `<distDir>/logs/next-development.log`
+
+#### `get_server_action_by_id`
+Locate a Server Action by ID:
+```json
+{ "name": "get_server_action_by_id", "arguments": { "actionId": "<action-id>" } }
+```
+
+### Example: Get Errors
+
+```bash
+curl -X POST http://localhost:<port>/_next/mcp \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json, text/event-stream" \
+  -d '{"jsonrpc":"2.0","id":"1","method":"tools/call","params":{"name":"get_errors","arguments":{}}}'
+```
 
 ## Rebuild Specific Routes (Next.js 16+)
 
