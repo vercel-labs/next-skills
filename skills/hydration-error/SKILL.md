@@ -2,7 +2,7 @@
 description: Diagnose and fix React hydration mismatch errors in Next.js applications
 ---
 
-# Debug Hydration Errors
+# Hydration Error
 
 Diagnose and fix React hydration mismatch errors in Next.js applications.
 
