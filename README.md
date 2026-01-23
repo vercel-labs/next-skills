@@ -10,6 +10,7 @@ A Claude Code plugin with agent skills for common Next.js workflows.
 | `/metadata` | Add SEO metadata to pages (Server Components only) |
 | `/hydration-error` | Diagnose and fix React hydration errors |
 | `/best-practices` | Next.js best practices (runtime selection, async params) |
+| `/debug-tricks` | Speed up debugging - MCP endpoint, rebuild specific routes |
 
 ## Installation
 
@@ -38,6 +39,7 @@ Once installed, invoke skills using slash commands:
 /metadata
 /hydration-error
 /best-practices
+/debug-tricks
 ```
 
 Skills are also automatically suggested by Claude when relevant to your task.
@@ -52,7 +54,8 @@ next-skills/
 │   ├── upgrade/SKILL.md
 │   ├── metadata/SKILL.md
 │   ├── hydration-error/SKILL.md
-│   └── best-practices/SKILL.md
+│   ├── best-practices/SKILL.md
+│   └── debug-tricks/SKILL.md
 └── README.md
 ```
 
