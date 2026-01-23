@@ -13,49 +13,37 @@ Diagnose and fix React hydration mismatch errors in Next.js applications.
    - "Hydration failed because the initial UI does not match"
    - "Text content does not match server-rendered HTML"
 
-2. **Common causes and fixes**:
+2. **Use the error overlay**: In development, click the hydration error to see the server/client diff.
 
-   ### Browser-only APIs
-   Code using `window`, `document`, `localStorage` renders differently on server vs client.
+3. **Common causes**: See the `react-best-practices` skill for detailed patterns:
+   - Browser-only APIs (`window`, `document`, `localStorage`)
+   - Date/Time rendering (timezone differences)
+   - Invalid HTML nesting
+   - Random values or IDs (use `useId()` hook)
 
-   **Fix**: Check for client-side or use dynamic import with `ssr: false`:
-   ```tsx
-   'use client'
-   const [mounted, setMounted] = useState(false)
-   useEffect(() => setMounted(true), [])
-   if (!mounted) return null
-   ```
-
-   ### Date/Time rendering
-   Server and client may have different timezones.
-
-   **Fix**: Format dates on client only using `useEffect`.
-
-   ### Invalid HTML nesting
-   Invalid DOM nesting (e.g., `<p>` inside `<p>`, `<div>` inside `<p>`).
-
-   **Fix**: Correct the HTML structure.
-
-   ### Random values or IDs
-   Using `Math.random()` or `Date.now()` for keys.
-
-   **Fix**: Use `useId()` hook for stable identifiers.
+4. **Next.js specific fixes**:
 
    ### Third-party scripts
    Scripts that modify DOM during hydration.
 
-   **Fix**: Use `next/script` with `strategy="afterInteractive"`.
+   **Fix**: Use `next/script` with `strategy="afterInteractive"`:
+   ```tsx
+   import Script from 'next/script'
 
-   ### Browser extensions
-   Extensions modifying DOM before hydration.
-
-   **Fix**: Use `suppressHydrationWarning` sparingly on affected elements.
-
-3. **Debug with React DevTools**: Enable "Highlight updates" to see re-renders.
-
-4. **Use error overlay**: In development, click the hydration error to see the server/client diff.
+   export default function Page() {
+     return (
+       <>
+         <Script
+           src="https://example.com/script.js"
+           strategy="afterInteractive"
+         />
+       </>
+     )
+   }
+   ```
 
 ## Reference
 
 - React Hydration Errors: https://nextjs.org/docs/messages/react-hydration-error
 - Client Components: https://nextjs.org/docs/app/building-your-application/rendering/client-components
+- next/script: https://nextjs.org/docs/app/api-reference/components/script
