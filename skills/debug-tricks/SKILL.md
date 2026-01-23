@@ -1,4 +1,5 @@
 ---
+name: debug-tricks
 description: Speed up Next.js debugging - MCP endpoint for app state, rebuild specific routes
 ---
 

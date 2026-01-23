@@ -1,4 +1,5 @@
 ---
+name: best-practices
 description: Next.js best practices - runtime selection, async params patterns, and modern conventions
 ---
 

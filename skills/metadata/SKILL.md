@@ -1,4 +1,5 @@
 ---
+name: metadata
 description: Add SEO metadata to pages using the Next.js Metadata API (Server Components only)
 argument-hint: "[page-path]"
 ---

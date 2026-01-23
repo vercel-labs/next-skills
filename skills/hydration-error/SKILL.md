@@ -1,4 +1,5 @@
 ---
+name: hydration-error
 description: Diagnose and fix React hydration mismatch errors in Next.js applications
 ---
 
