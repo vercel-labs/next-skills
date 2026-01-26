@@ -1,10 +1,4 @@
----
-name: next-bundling
-description: Fix bundling issues - server-incompatible packages, externals, transpilation
-user-invocable: false
----
-
-# Next.js Bundling
+# Bundling
 
 Fix common bundling issues with third-party packages.
 

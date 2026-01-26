@@ -1,10 +1,4 @@
----
-name: next-image
-description: Optimize images with next/image - sizing, remote images, blur placeholders
-user-invocable: false
----
-
-# Next.js Image Optimization
+# Image Optimization
 
 Use `next/image` for automatic image optimization.
 

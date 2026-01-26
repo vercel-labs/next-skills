@@ -9,20 +9,9 @@ Agent skills for common Next.js workflows.
 | `next-upgrade` | Upgrade to the latest Next.js version following official migration guides |
 | `next-metadata` | Add SEO metadata to pages (Server Components only) |
 | `next-og-image` | Generate dynamic Open Graph images using next/og |
-| `next-image` | Optimize images with next/image - sizing, remote images, blur placeholders (auto-applied) |
-| `next-font` | Optimize fonts with next/font - Google Fonts, local fonts, variable fonts (auto-applied) |
 | `next-hydration-error` | Diagnose and fix React hydration errors |
-| `next-bundling` | Fix bundling issues - server-incompatible packages, externals, transpilation (auto-applied) |
 | `next-debug-tricks` | Speed up debugging - MCP endpoint, rebuild specific routes |
-| `next-fundamentals` | Background knowledge: RSC boundaries, async patterns, runtime selection, directives (auto-applied) |
-
-## Related Skills
-
-For React-specific patterns (hooks, state management, component composition), install the React skills:
-
-```bash
-npx skills add vercel-labs/agent-skills --skill react-best-practices
-```
+| `next-fundamentals` | Background knowledge: RSC boundaries, async patterns, image/font optimization, bundling (auto-applied) |
 
 ## Installation
 
@@ -38,6 +27,14 @@ npx skills add vercel-labs/next-skills --skill next-upgrade --skill next-fundame
 
 # Install all skills
 npx skills add vercel-labs/next-skills
+```
+
+## Related Skills
+
+For React-specific patterns (hooks, state management, component composition), install the React skills:
+
+```bash
+npx skills add vercel-labs/agent-skills --skill react-best-practices
 ```
 
 ## Usage
@@ -62,17 +59,17 @@ next-skills/
 │   ├── next-upgrade/SKILL.md
 │   ├── next-metadata/SKILL.md
 │   ├── next-og-image/SKILL.md
-│   ├── next-image/SKILL.md
-│   ├── next-font/SKILL.md
 │   ├── next-hydration-error/SKILL.md
-│   ├── next-bundling/SKILL.md
 │   ├── next-debug-tricks/SKILL.md
 │   └── next-fundamentals/
 │       ├── SKILL.md              # Entry point
 │       ├── rsc-boundaries.md     # RSC serialization rules
 │       ├── async-patterns.md     # Next.js 15 async APIs
 │       ├── runtime-selection.md  # Node.js vs Edge
-│       └── directives.md         # use cache, use client, use server
+│       ├── directives.md         # use cache, use client, use server
+│       ├── image.md              # next/image optimization
+│       ├── font.md               # next/font optimization
+│       └── bundling.md           # Package bundling issues
 └── README.md
 ```
 

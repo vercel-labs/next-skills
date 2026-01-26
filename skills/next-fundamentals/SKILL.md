@@ -1,6 +1,6 @@
 ---
 name: next-fundamentals
-description: Next.js fundamentals - RSC boundaries, async patterns, runtime selection, directives
+description: Next.js fundamentals - RSC boundaries, async patterns, image/font optimization, bundling
 user-invocable: false
 ---
 
@@ -37,3 +37,28 @@ See [runtime-selection.md](./runtime-selection.md) for:
 See [directives.md](./directives.md) for:
 - `'use cache'` directive
 - Cache lifecycle options
+
+## Image Optimization
+
+See [image.md](./image.md) for:
+- Always use `next/image` over `<img>`
+- Remote images configuration
+- Responsive `sizes` attribute
+- Blur placeholders
+- Priority loading for LCP
+
+## Font Optimization
+
+See [font.md](./font.md) for:
+- `next/font` setup
+- Google Fonts, local fonts
+- Tailwind CSS integration
+- Preloading subsets
+
+## Bundling
+
+See [bundling.md](./bundling.md) for:
+- Server-incompatible packages
+- ESM/CommonJS issues
+- Bundle analysis
+- Webpack to Turbopack migration

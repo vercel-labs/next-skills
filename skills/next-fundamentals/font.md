@@ -1,10 +1,4 @@
----
-name: next-font
-description: Optimize fonts with next/font - Google Fonts, local fonts, variable fonts
-user-invocable: false
----
-
-# Next.js Font Optimization
+# Font Optimization
 
 Use `next/font` for automatic font optimization with zero layout shift.
 
