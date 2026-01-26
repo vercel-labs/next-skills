@@ -1,5 +1,5 @@
 ---
-name: metadata
+name: next-metadata
 description: Add SEO metadata to pages using the Next.js Metadata API (Server Components only)
 argument-hint: "[page-path]"
 ---
@@ -69,8 +69,3 @@ If the target page or layout has `'use client'` directive:
    - `opengraph-image.png` - Default OG image (can be generated with `ImageResponse`)
    - `robots.ts` - Search engine directives
    - `sitemap.ts` - XML sitemap
-
-## Reference
-
-- Metadata: https://nextjs.org/docs/app/building-your-application/optimizing/metadata
-- generateMetadata: https://nextjs.org/docs/app/api-reference/functions/generate-metadata

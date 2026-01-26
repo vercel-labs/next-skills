@@ -1,5 +1,5 @@
 ---
-name: hydration-error
+name: next-hydration-error
 description: Diagnose and fix React hydration mismatch errors in Next.js applications
 ---
 
@@ -15,7 +15,7 @@ Diagnose and fix React hydration mismatch errors in Next.js applications.
 
 2. **Use the error overlay**: In development, click the hydration error to see the server/client diff.
 
-3. **Common causes**: See the `react-best-practices` skill for detailed patterns:
+3. **Common causes**:
    - Browser-only APIs (`window`, `document`, `localStorage`)
    - Date/Time rendering (timezone differences)
    - Invalid HTML nesting
@@ -42,8 +42,39 @@ Diagnose and fix React hydration mismatch errors in Next.js applications.
    }
    ```
 
-## Reference
+   ### Browser-only rendering
+   When content depends on browser state:
 
-- React Hydration Errors: https://nextjs.org/docs/messages/react-hydration-error
-- Client Components: https://nextjs.org/docs/app/building-your-application/rendering/client-components
-- next/script: https://nextjs.org/docs/app/api-reference/components/script
+   ```tsx
+   'use client'
+   import { useState, useEffect } from 'react'
+
+   export function ClientOnly({ children }: { children: React.ReactNode }) {
+     const [mounted, setMounted] = useState(false)
+     useEffect(() => setMounted(true), [])
+     return mounted ? children : null
+   }
+   ```
+
+   ### Date/Time
+   Server and client may be in different timezones:
+
+   ```tsx
+   // ❌ Causes mismatch
+   <span>{new Date().toLocaleString()}</span>
+
+   // ✅ Render on client only
+   'use client'
+   const [time, setTime] = useState<string>()
+   useEffect(() => setTime(new Date().toLocaleString()), [])
+   ```
+
+   ### useId for unique IDs
+   ```tsx
+   import { useId } from 'react'
+
+   function Input() {
+     const id = useId()
+     return <input id={id} />
+   }
+   ```

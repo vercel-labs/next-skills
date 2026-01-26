@@ -1,5 +1,5 @@
 ---
-name: og-image
+name: next-og-image
 description: Generate Open Graph images dynamically in Next.js using next/og
 argument-hint: "[route-path]"
 ---
@@ -153,8 +153,3 @@ ImageResponse uses a subset of CSS with Flexbox layout:
 - Most common CSS properties are supported
 - No CSS Grid support
 - Styles must be inline objects, not CSS strings
-
-## Reference
-
-- next/og: https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image
-- ImageResponse: https://nextjs.org/docs/app/api-reference/functions/image-response

@@ -1,5 +1,5 @@
 ---
-name: upgrade
+name: next-upgrade
 description: Upgrade Next.js to the latest version following official migration guides and codemods
 argument-hint: "[target-version]"
 ---
@@ -47,8 +47,3 @@ Upgrade the current project to the latest Next.js version following official mig
 8. **Test the upgrade**:
    - Run `npm run build` to check for build errors
    - Run `npm run dev` and test key functionality
-
-## Reference
-
-- Codemods: https://nextjs.org/docs/app/building-your-application/upgrading/codemods
-- Releases: https://github.com/vercel/next.js/releases
