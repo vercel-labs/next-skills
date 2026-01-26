@@ -9,7 +9,10 @@ Agent skills for common Next.js workflows.
 | `next-upgrade` | Upgrade to the latest Next.js version following official migration guides |
 | `next-metadata` | Add SEO metadata to pages (Server Components only) |
 | `next-og-image` | Generate dynamic Open Graph images using next/og |
+| `next-image` | Optimize images with next/image - sizing, remote images, blur placeholders (auto-applied) |
+| `next-font` | Optimize fonts with next/font - Google Fonts, local fonts, variable fonts (auto-applied) |
 | `next-hydration-error` | Diagnose and fix React hydration errors |
+| `next-bundling` | Fix bundling issues - server-incompatible packages, externals, transpilation (auto-applied) |
 | `next-debug-tricks` | Speed up debugging - MCP endpoint, rebuild specific routes |
 | `next-fundamentals` | Background knowledge: RSC boundaries, async patterns, runtime selection, directives (auto-applied) |
 
@@ -59,7 +62,10 @@ next-skills/
 │   ├── next-upgrade/SKILL.md
 │   ├── next-metadata/SKILL.md
 │   ├── next-og-image/SKILL.md
+│   ├── next-image/SKILL.md
+│   ├── next-font/SKILL.md
 │   ├── next-hydration-error/SKILL.md
+│   ├── next-bundling/SKILL.md
 │   ├── next-debug-tricks/SKILL.md
 │   └── next-fundamentals/
 │       ├── SKILL.md              # Entry point
