@@ -115,3 +115,23 @@ See [hydration-error.md](./hydration-error.md) for:
 - Common causes (browser APIs, dates, invalid HTML)
 - Debugging with error overlay
 - Fixes for each cause
+
+## Parallel & Intercepting Routes
+
+See [parallel-routes.md](./parallel-routes.md) for:
+- Modal patterns with `@slot` and `(.)` interceptors
+- `default.tsx` for fallbacks
+- Closing modals correctly with `router.back()`
+
+## Self-Hosting
+
+See [self-hosting.md](./self-hosting.md) for:
+- `output: 'standalone'` for Docker
+- Cache handlers for multi-instance ISR
+- What works vs needs extra setup
+
+## Debug Tricks
+
+See [debug-tricks.md](./debug-tricks.md) for:
+- MCP endpoint for AI-assisted debugging
+- Rebuild specific routes with `--debug-build-paths`

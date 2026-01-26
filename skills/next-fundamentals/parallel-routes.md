@@ -1,8 +1,3 @@
----
-name: next-parallel-routes
-description: Parallel and intercepting routes - modal patterns, default.tsx, route matchers, closing modals properly
----
-
 # Parallel & Intercepting Routes
 
 Parallel routes render multiple pages in the same layout. Intercepting routes show a different UI when navigating from within your app vs direct URL access. Together they enable modal patterns.

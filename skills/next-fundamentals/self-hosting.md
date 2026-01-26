@@ -1,8 +1,3 @@
----
-name: next-self-hosting
-description: Self-host Next.js without Vercel - standalone output, Docker, cache handlers, ISR, and what needs extra setup
----
-
 # Self-Hosting Next.js
 
 Deploy Next.js outside of Vercel with confidence.

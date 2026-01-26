@@ -1,8 +1,3 @@
----
-name: next-debug-tricks
-description: Speed up Next.js debugging - MCP endpoint for app state, rebuild specific routes
----
-
 # Debug Tricks
 
 Tricks to speed up debugging Next.js applications.

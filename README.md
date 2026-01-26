@@ -24,6 +24,9 @@ Core Next.js knowledge:
 - [Font](./skills/next-fundamentals/font.md) - `next/font` optimization
 - [Bundling](./skills/next-fundamentals/bundling.md) - Package compatibility
 - [Hydration Errors](./skills/next-fundamentals/hydration-error.md) - Debugging mismatches
+- [Parallel Routes](./skills/next-fundamentals/parallel-routes.md) - Modal patterns with intercepting routes
+- [Self-Hosting](./skills/next-fundamentals/self-hosting.md) - Docker, standalone output, ISR
+- [Debug Tricks](./skills/next-fundamentals/debug-tricks.md) - MCP endpoint, rebuild specific routes
 
 ## Installation
 
@@ -37,7 +40,7 @@ npx skills add vercel-labs/next-skills
 
 ## Advanced Use Cases
 
-Optional skills for specific needs. Install as needed and invoke via slash commands.
+Optional skills for specific needs. Invoke via slash commands.
 
 ### `next-upgrade`
 
@@ -47,33 +50,9 @@ Upgrading between Next.js versions with official migration guides.
 npx skills add vercel-labs/next-skills --skill next-upgrade
 ```
 
-### `next-debug-tricks`
-
-Speed up debugging with MCP endpoint and selective route rebuilding.
-
-```bash
-npx skills add vercel-labs/next-skills --skill next-debug-tricks
-```
-
-### `next-parallel-routes`
-
-Implement modal patterns with parallel and intercepting routes. Covers `default.tsx`, route matchers (`(.)`, `(..)`, `(...)`), and closing modals correctly.
-
-```bash
-npx skills add vercel-labs/next-skills --skill next-parallel-routes
-```
-
-### `next-self-hosting`
-
-Deploy Next.js without Vercel. Covers `output: 'standalone'`, Docker, PM2, cache handlers for multi-instance ISR, and what needs extra setup.
-
-```bash
-npx skills add vercel-labs/next-skills --skill next-self-hosting
-```
-
 ### `next-cache-components`
 
-Next.js 16 Cache Components and PPR. Covers `cacheComponents: true`, `'use cache'` directive, cache profiles (`remote`, `private`), `cacheLife()`, `cacheTag()`, and `updateTag()`.
+Next.js 16 Cache Components and PPR. Covers `cacheComponents: true`, `'use cache'` directive, cache profiles, `cacheLife()`, `cacheTag()`, and `updateTag()`.
 
 ```bash
 npx skills add vercel-labs/next-skills --skill next-cache-components
@@ -87,9 +66,6 @@ npx skills add vercel-labs/next-skills --skill next-cache-components
 
 ```
 /next-upgrade
-/next-debug-tricks
-/next-parallel-routes
-/next-self-hosting
 /next-cache-components
 ```
 
