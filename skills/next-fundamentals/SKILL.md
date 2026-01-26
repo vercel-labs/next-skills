@@ -1,6 +1,6 @@
 ---
 name: next-fundamentals
-description: Next.js fundamentals - RSC boundaries, async patterns, image/font optimization, bundling
+description: Next.js fundamentals - RSC boundaries, async patterns, metadata, image/font optimization, bundling, hydration errors
 user-invocable: false
 ---
 
@@ -38,6 +38,14 @@ See [directives.md](./directives.md) for:
 - `'use cache'` directive
 - Cache lifecycle options
 
+## Metadata & OG Images
+
+See [metadata.md](./metadata.md) for:
+- Static and dynamic metadata
+- `generateMetadata` function
+- OG image generation with `next/og`
+- File-based metadata conventions
+
 ## Image Optimization
 
 See [image.md](./image.md) for:
@@ -62,3 +70,10 @@ See [bundling.md](./bundling.md) for:
 - ESM/CommonJS issues
 - Bundle analysis
 - Webpack to Turbopack migration
+
+## Hydration Errors
+
+See [hydration-error.md](./hydration-error.md) for:
+- Common causes (browser APIs, dates, invalid HTML)
+- Debugging with error overlay
+- Fixes for each cause

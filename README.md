@@ -7,11 +7,8 @@ Agent skills for common Next.js workflows.
 | Skill | Description |
 |-------|-------------|
 | `next-upgrade` | Upgrade to the latest Next.js version following official migration guides |
-| `next-metadata` | Add SEO metadata to pages (Server Components only) |
-| `next-og-image` | Generate dynamic Open Graph images using next/og |
-| `next-hydration-error` | Diagnose and fix React hydration errors |
 | `next-debug-tricks` | Speed up debugging - MCP endpoint, rebuild specific routes |
-| `next-fundamentals` | Background knowledge: RSC boundaries, async patterns, image/font optimization, bundling (auto-applied) |
+| `next-fundamentals` | Background knowledge: RSC boundaries, async patterns, metadata, image/font optimization, bundling, hydration errors (auto-applied) |
 
 ## Installation
 
@@ -43,9 +40,6 @@ Once installed, invoke skills using slash commands:
 
 ```
 /next-upgrade
-/next-metadata
-/next-og-image
-/next-hydration-error
 /next-debug-tricks
 ```
 
@@ -57,9 +51,6 @@ Once installed, invoke skills using slash commands:
 next-skills/
 ├── skills/
 │   ├── next-upgrade/SKILL.md
-│   ├── next-metadata/SKILL.md
-│   ├── next-og-image/SKILL.md
-│   ├── next-hydration-error/SKILL.md
 │   ├── next-debug-tricks/SKILL.md
 │   └── next-fundamentals/
 │       ├── SKILL.md              # Entry point
@@ -67,9 +58,11 @@ next-skills/
 │       ├── async-patterns.md     # Next.js 15 async APIs
 │       ├── runtime-selection.md  # Node.js vs Edge
 │       ├── directives.md         # use cache, use client, use server
+│       ├── metadata.md           # Metadata API and OG images
 │       ├── image.md              # next/image optimization
 │       ├── font.md               # next/font optimization
-│       └── bundling.md           # Package bundling issues
+│       ├── bundling.md           # Package bundling issues
+│       └── hydration-error.md    # Hydration mismatch fixes
 └── README.md
 ```
 
