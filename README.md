@@ -18,16 +18,16 @@ Agent skills for common Next.js workflows.
 
 ```bash
 # List available skills
-npx add-skill vercel-labs/next-skills --list
+npx skills add vercel-labs/next-skills --list
 
 # Install a specific skill
-npx add-skill vercel-labs/next-skills --skill debug-tricks
+npx skills add vercel-labs/next-skills --skill debug-tricks
 
 # Install multiple skills
-npx add-skill vercel-labs/next-skills --skill upgrade --skill best-practices
+npx skills add vercel-labs/next-skills --skill upgrade --skill best-practices
 
 # Install all skills
-npx add-skill vercel-labs/next-skills
+npx skills add vercel-labs/next-skills
 ```
 
 ## Usage
