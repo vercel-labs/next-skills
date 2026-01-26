@@ -58,13 +58,40 @@ export const metadata: Metadata = {
 }
 ```
 
-## File-based Metadata
+## Metadata File Conventions
 
-Place in `app/` directory:
-- `favicon.ico`, `icon.png` - Favicons
-- `opengraph-image.png` - Default OG image
-- `robots.ts` - Search engine directives
-- `sitemap.ts` - XML sitemap
+Reference: https://nextjs.org/docs/app/getting-started/project-structure#metadata-file-conventions
+
+Place these files in `app/` directory (or route segments):
+
+| File | Purpose |
+|------|---------|
+| `favicon.ico` | Favicon |
+| `icon.png` / `icon.svg` | App icon |
+| `apple-icon.png` | Apple app icon |
+| `opengraph-image.png` | OG image |
+| `twitter-image.png` | Twitter card image |
+| `sitemap.ts` / `sitemap.xml` | Sitemap |
+| `robots.ts` / `robots.txt` | Robots directives |
+| `manifest.ts` / `manifest.json` | Web app manifest |
+
+## SEO Best Practice: Static Files Are Often Enough
+
+For most sites, **static metadata files provide excellent SEO coverage**:
+
+```
+app/
+├── favicon.ico
+├── opengraph-image.png     # Works for both OG and Twitter
+├── sitemap.ts
+├── robots.ts
+└── layout.tsx              # With title/description metadata
+```
+
+**Tips:**
+- A single `opengraph-image.png` covers both Open Graph and Twitter (Twitter falls back to OG)
+- Static `title` and `description` in layout metadata is sufficient for most pages
+- Only use dynamic `generateMetadata` when content varies per page
 
 ---
 

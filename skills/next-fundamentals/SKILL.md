@@ -1,12 +1,20 @@
 ---
 name: next-fundamentals
-description: Next.js fundamentals - RSC boundaries, async patterns, metadata, image/font optimization, bundling, hydration errors
+description: Next.js fundamentals - file conventions, RSC boundaries, data patterns, async APIs, metadata, error handling, route handlers, image/font optimization, bundling
 user-invocable: false
 ---
 
 # Next.js Fundamentals
 
 Apply these rules when writing or reviewing Next.js code.
+
+## File Conventions
+
+See [file-conventions.md](./file-conventions.md) for:
+- Project structure and special files
+- Route segments (dynamic, catch-all, groups)
+- Parallel and intercepting routes
+- Middleware rename in v16 (middleware → proxy)
 
 ## RSC Boundaries
 
@@ -37,6 +45,28 @@ See [runtime-selection.md](./runtime-selection.md) for:
 See [directives.md](./directives.md) for:
 - `'use cache'` directive
 - Cache lifecycle options
+
+## Error Handling
+
+See [error-handling.md](./error-handling.md) for:
+- `error.tsx` and `global-error.tsx`
+- Server Actions: don't wrap `redirect()`/`notFound()` in try-catch
+- Not found handling
+
+## Data Patterns
+
+See [data-patterns.md](./data-patterns.md) for:
+- Server Components vs Server Actions vs Route Handlers
+- Avoiding data waterfalls (`Promise.all`, Suspense, preload)
+- Client component data fetching
+
+## Route Handlers
+
+See [route-handlers.md](./route-handlers.md) for:
+- `route.ts` basics
+- GET handler conflicts with `page.tsx`
+- Environment behavior (no React DOM)
+- When to use vs Server Actions
 
 ## Metadata & OG Images
 
