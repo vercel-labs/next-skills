@@ -16,6 +16,7 @@ Core Next.js knowledge:
 - [Async Patterns](./skills/next-fundamentals/async-patterns.md) - Next.js 15+ async APIs
 - [Directives](./skills/next-fundamentals/directives.md) - `'use client'`, `'use server'`, `'use cache'`
 - [Functions](./skills/next-fundamentals/functions.md) - Navigation hooks, server functions, generate functions
+- [Runtime Selection](./skills/next-fundamentals/runtime-selection.md) - Node.js vs Edge runtime
 - [Error Handling](./skills/next-fundamentals/error-handling.md) - Error boundaries and redirects
 - [Route Handlers](./skills/next-fundamentals/route-handlers.md) - API routes with `route.ts`
 - [Metadata](./skills/next-fundamentals/metadata.md) - SEO, OG images, sitemaps
@@ -24,17 +25,11 @@ Core Next.js knowledge:
 - [Bundling](./skills/next-fundamentals/bundling.md) - Package compatibility
 - [Hydration Errors](./skills/next-fundamentals/hydration-error.md) - Debugging mismatches
 
-### `next-caching`
-
-Understanding Next.js caching:
-
-- [Caching](./skills/next-caching/SKILL.md) - 4 cache layers, fetch options, revalidation, v14→v15 changes
-
 ## Installation
 
 ```bash
 # Install essentials (recommended)
-npx skills add vercel-labs/next-skills --skill next-fundamentals --skill next-caching
+npx skills add vercel-labs/next-skills --skill next-fundamentals
 
 # Or install everything
 npx skills add vercel-labs/next-skills
@@ -86,7 +81,7 @@ npx skills add vercel-labs/next-skills --skill next-cache-components
 
 ## Usage
 
-**Background skills** (`next-fundamentals`, `next-caching`) are automatically applied when relevant.
+**Background skills** (`next-fundamentals`) are automatically applied when relevant.
 
 **Slash commands** for advanced skills:
 
