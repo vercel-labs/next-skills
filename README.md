@@ -8,34 +8,26 @@ Start here. These background skills are auto-applied to prevent common mistakes.
 
 ### `next-fundamentals`
 
-Core Next.js knowledge covering:
+Core Next.js knowledge:
 
-| Topic | What You'll Learn |
-|-------|-------------------|
-| File Conventions | Project structure, special files (`page.tsx`, `layout.tsx`, `loading.tsx`), route segments, `middleware.ts` → `proxy.ts` (v16) |
-| RSC Boundaries | Server/Client Component rules, serialization constraints, `'use client'` placement |
-| Data Patterns | Server Components vs Server Actions vs Route Handlers, avoiding waterfalls, `Promise.all`, preload pattern |
-| Async APIs | Next.js 15+ async `params`, `searchParams`, `cookies()`, `headers()` |
-| Directives | `'use client'`, `'use server'`, `'use cache'` |
-| Error Handling | `error.tsx`, `global-error.tsx`, `not-found.tsx`, Server Action error patterns |
-| Route Handlers | `route.ts` conventions, GET/POST handlers, when to use vs Server Actions |
-| Metadata | Static/dynamic metadata, `generateMetadata`, OG images with `next/og` |
-| Image Optimization | `next/image`, remote images, `sizes`, blur placeholders, priority loading |
-| Font Optimization | `next/font`, Google Fonts, local fonts, Tailwind integration |
-| Bundling | Server-incompatible packages, ESM/CJS issues, Turbopack migration |
-| Hydration Errors | Common causes, debugging, fixes |
+- [File Conventions](./skills/next-fundamentals/file-conventions.md) - Project structure and special files
+- [RSC Boundaries](./skills/next-fundamentals/rsc-boundaries.md) - Server/Client Component rules
+- [Data Patterns](./skills/next-fundamentals/data-patterns.md) - Fetching and mutation strategies
+- [Async Patterns](./skills/next-fundamentals/async-patterns.md) - Next.js 15+ async APIs
+- [Directives](./skills/next-fundamentals/directives.md) - `'use client'`, `'use server'`, `'use cache'`
+- [Error Handling](./skills/next-fundamentals/error-handling.md) - Error boundaries and recovery
+- [Route Handlers](./skills/next-fundamentals/route-handlers.md) - API routes with `route.ts`
+- [Metadata](./skills/next-fundamentals/metadata.md) - SEO and OG images
+- [Image](./skills/next-fundamentals/image.md) - `next/image` optimization
+- [Font](./skills/next-fundamentals/font.md) - `next/font` optimization
+- [Bundling](./skills/next-fundamentals/bundling.md) - Package compatibility
+- [Hydration Errors](./skills/next-fundamentals/hydration-error.md) - Debugging mismatches
 
 ### `next-caching`
 
 Understanding Next.js caching:
 
-| Topic | What You'll Learn |
-|-------|-------------------|
-| 4 Cache Layers | Request Memoization, Data Cache, Full Route Cache, Router Cache |
-| fetch() Options | `cache`, `next.revalidate`, `next.tags` |
-| Revalidation | `revalidatePath()` vs `revalidateTag()`, when to use each |
-| v14 → v15 Changes | Default behavior shift from cached to uncached |
-| Common Gotchas | Router Cache minimum, third-party libraries, stale-while-revalidate |
+- [Caching](./skills/next-caching/SKILL.md) - 4 cache layers, fetch options, revalidation, v14→v15 changes
 
 ## Installation
 
