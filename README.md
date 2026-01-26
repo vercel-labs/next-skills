@@ -22,7 +22,8 @@ Core Next.js knowledge:
 - [Metadata](./skills/next-best-practices/metadata.md) - SEO, OG images, sitemaps
 - [Image](./skills/next-best-practices/image.md) - `next/image` optimization
 - [Font](./skills/next-best-practices/font.md) - `next/font` optimization
-- [Bundling](./skills/next-best-practices/bundling.md) - Package compatibility
+- [Bundling](./skills/next-best-practices/bundling.md) - Package compatibility, CSS imports, polyfills
+- [Scripts](./skills/next-best-practices/scripts.md) - Third-party scripts, Google Analytics
 - [Hydration Errors](./skills/next-best-practices/hydration-error.md) - Debugging mismatches
 - [Suspense Boundaries](./skills/next-best-practices/suspense-boundaries.md) - CSR bailout, Cache Components requirements
 - [Parallel Routes](./skills/next-best-practices/parallel-routes.md) - Modal patterns with intercepting routes

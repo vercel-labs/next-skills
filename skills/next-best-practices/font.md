@@ -177,6 +177,23 @@ const inter = Inter({
 // 'optional' - short block, no swap (use if font is optional)
 ```
 
+## Don't Use Manual Font Links
+
+Always use `next/font` instead of `<link>` tags for Google Fonts.
+
+```tsx
+// Bad: Manual link tag (blocks rendering, no optimization)
+<link href="https://fonts.googleapis.com/css2?family=Inter" rel="stylesheet" />
+
+// Bad: Missing display and preconnect
+<link href="https://fonts.googleapis.com/css2?family=Inter" rel="stylesheet" />
+
+// Good: Use next/font (self-hosted, zero layout shift)
+import { Inter } from 'next/font/google'
+
+const inter = Inter({ subsets: ['latin'] })
+```
+
 ## Common Mistakes
 
 ```tsx

@@ -77,6 +77,34 @@ export default function Page() {
 }
 ```
 
+## CSS Imports
+
+Import CSS files instead of using `<link>` tags. Next.js handles bundling and optimization.
+
+```tsx
+// Bad: Manual link tag
+<link rel="stylesheet" href="/styles.css" />
+
+// Good: Import CSS
+import './styles.css'
+
+// Good: CSS Modules
+import styles from './Button.module.css'
+```
+
+## Polyfills
+
+Next.js includes common polyfills automatically. Don't load redundant ones from polyfill.io or similar CDNs.
+
+Already included: `Array.from`, `Object.assign`, `Promise`, `fetch`, `Map`, `Set`, `Symbol`, `URLSearchParams`, and 50+ others.
+
+```tsx
+// Bad: Redundant polyfills
+<script src="https://polyfill.io/v3/polyfill.min.js?features=fetch,Promise,Array.from" />
+
+// Good: Next.js includes these automatically
+```
+
 ## ESM/CommonJS Issues
 
 ### Error Signs

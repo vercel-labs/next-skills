@@ -50,19 +50,33 @@ Reference: https://nextjs.org/docs/app/api-reference/functions
 
 ### Navigation
 
+Use `next/link` for internal navigation instead of `<a>` tags.
+
+```tsx
+// Bad: Plain anchor tag
+<a href="/about">About</a>
+
+// Good: Next.js Link
+import Link from 'next/link'
+
+<Link href="/about">About</Link>
+```
+
+Active link styling:
+
 ```tsx
 'use client'
 
-import { useRouter, usePathname } from 'next/navigation'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export function NavLink({ href, children }) {
-  const router = useRouter()
   const pathname = usePathname()
 
   return (
-    <a href={href} className={pathname === href ? 'active' : ''}>
+    <Link href={href} className={pathname === href ? 'active' : ''}>
       {children}
-    </a>
+    </Link>
   )
 }
 ```

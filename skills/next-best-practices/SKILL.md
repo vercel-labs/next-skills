@@ -105,9 +105,18 @@ See [font.md](./font.md) for:
 
 See [bundling.md](./bundling.md) for:
 - Server-incompatible packages
+- CSS imports (not link tags)
+- Polyfills (already included)
 - ESM/CommonJS issues
 - Bundle analysis
-- Webpack to Turbopack migration
+
+## Scripts
+
+See [scripts.md](./scripts.md) for:
+- `next/script` vs native script tags
+- Inline scripts need `id`
+- Loading strategies
+- Google Analytics with `@next/third-parties`
 
 ## Hydration Errors
 
@@ -141,3 +150,4 @@ See [self-hosting.md](./self-hosting.md) for:
 See [debug-tricks.md](./debug-tricks.md) for:
 - MCP endpoint for AI-assisted debugging
 - Rebuild specific routes with `--debug-build-paths`
+
