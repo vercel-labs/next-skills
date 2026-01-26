@@ -24,6 +24,7 @@ Core Next.js knowledge:
 - [Font](./skills/next-best-practices/font.md) - `next/font` optimization
 - [Bundling](./skills/next-best-practices/bundling.md) - Package compatibility
 - [Hydration Errors](./skills/next-best-practices/hydration-error.md) - Debugging mismatches
+- [Suspense Boundaries](./skills/next-best-practices/suspense-boundaries.md) - CSR bailout, Cache Components requirements
 - [Parallel Routes](./skills/next-best-practices/parallel-routes.md) - Modal patterns with intercepting routes
 - [Self-Hosting](./skills/next-best-practices/self-hosting.md) - Docker, standalone output, ISR
 - [Debug Tricks](./skills/next-best-practices/debug-tricks.md) - MCP endpoint, rebuild specific routes

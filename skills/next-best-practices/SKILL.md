@@ -116,6 +116,12 @@ See [hydration-error.md](./hydration-error.md) for:
 - Debugging with error overlay
 - Fixes for each cause
 
+## Suspense Boundaries
+
+See [suspense-boundaries.md](./suspense-boundaries.md) for:
+- CSR bailout with `useSearchParams` and `usePathname`
+- Which hooks require Suspense boundaries
+
 ## Parallel & Intercepting Routes
 
 See [parallel-routes.md](./parallel-routes.md) for:
