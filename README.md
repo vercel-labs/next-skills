@@ -6,33 +6,33 @@ Agent skills for common Next.js workflows.
 
 Start here. These background skills are auto-applied to prevent common mistakes.
 
-### `next-best-practice`
+### `next-best-practices`
 
 Core Next.js knowledge:
 
-- [File Conventions](./skills/next-best-practice/file-conventions.md) - Project structure and special files
-- [RSC Boundaries](./skills/next-best-practice/rsc-boundaries.md) - Server/Client Component rules
-- [Data Patterns](./skills/next-best-practice/data-patterns.md) - Fetching and mutation strategies
-- [Async Patterns](./skills/next-best-practice/async-patterns.md) - Next.js 15+ async APIs
-- [Directives](./skills/next-best-practice/directives.md) - `'use client'`, `'use server'`, `'use cache'`
-- [Functions](./skills/next-best-practice/functions.md) - Navigation hooks, server functions, generate functions
-- [Runtime Selection](./skills/next-best-practice/runtime-selection.md) - Node.js vs Edge runtime
-- [Error Handling](./skills/next-best-practice/error-handling.md) - Error boundaries and redirects
-- [Route Handlers](./skills/next-best-practice/route-handlers.md) - API routes with `route.ts`
-- [Metadata](./skills/next-best-practice/metadata.md) - SEO, OG images, sitemaps
-- [Image](./skills/next-best-practice/image.md) - `next/image` optimization
-- [Font](./skills/next-best-practice/font.md) - `next/font` optimization
-- [Bundling](./skills/next-best-practice/bundling.md) - Package compatibility
-- [Hydration Errors](./skills/next-best-practice/hydration-error.md) - Debugging mismatches
-- [Parallel Routes](./skills/next-best-practice/parallel-routes.md) - Modal patterns with intercepting routes
-- [Self-Hosting](./skills/next-best-practice/self-hosting.md) - Docker, standalone output, ISR
-- [Debug Tricks](./skills/next-best-practice/debug-tricks.md) - MCP endpoint, rebuild specific routes
+- [File Conventions](./skills/next-best-practices/file-conventions.md) - Project structure and special files
+- [RSC Boundaries](./skills/next-best-practices/rsc-boundaries.md) - Server/Client Component rules
+- [Data Patterns](./skills/next-best-practices/data-patterns.md) - Fetching and mutation strategies
+- [Async Patterns](./skills/next-best-practices/async-patterns.md) - Next.js 15+ async APIs
+- [Directives](./skills/next-best-practices/directives.md) - `'use client'`, `'use server'`, `'use cache'`
+- [Functions](./skills/next-best-practices/functions.md) - Navigation hooks, server functions, generate functions
+- [Runtime Selection](./skills/next-best-practices/runtime-selection.md) - Node.js vs Edge runtime
+- [Error Handling](./skills/next-best-practices/error-handling.md) - Error boundaries and redirects
+- [Route Handlers](./skills/next-best-practices/route-handlers.md) - API routes with `route.ts`
+- [Metadata](./skills/next-best-practices/metadata.md) - SEO, OG images, sitemaps
+- [Image](./skills/next-best-practices/image.md) - `next/image` optimization
+- [Font](./skills/next-best-practices/font.md) - `next/font` optimization
+- [Bundling](./skills/next-best-practices/bundling.md) - Package compatibility
+- [Hydration Errors](./skills/next-best-practices/hydration-error.md) - Debugging mismatches
+- [Parallel Routes](./skills/next-best-practices/parallel-routes.md) - Modal patterns with intercepting routes
+- [Self-Hosting](./skills/next-best-practices/self-hosting.md) - Docker, standalone output, ISR
+- [Debug Tricks](./skills/next-best-practices/debug-tricks.md) - MCP endpoint, rebuild specific routes
 
 ## Installation
 
 ```bash
 # Install essentials (recommended)
-npx skills add vercel-labs/next-skills --skill next-best-practice
+npx skills add vercel-labs/next-skills --skill next-best-practices
 
 # Or install everything
 npx skills add vercel-labs/next-skills
@@ -60,7 +60,7 @@ npx skills add vercel-labs/next-skills --skill next-cache-components
 
 ## Usage
 
-**Background skills** (`next-best-practice`) are automatically applied when relevant.
+**Background skills** (`next-best-practices`) are automatically applied when relevant.
 
 **Slash commands** for advanced skills:
 
