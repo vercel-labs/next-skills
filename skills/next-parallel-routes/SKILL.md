@@ -124,7 +124,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
       if (e.key === 'Escape') {
-        router.back(); // ✅ Correct!
+        router.back(); // Correct
       }
     }
     document.addEventListener('keydown', onKeyDown);
@@ -134,7 +134,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
   // Close on overlay click
   const handleOverlayClick = useCallback((e: React.MouseEvent) => {
     if (e.target === overlayRef.current) {
-      router.back(); // ✅ Correct!
+      router.back(); // Correct
     }
   }, [router]);
 
@@ -146,10 +146,10 @@ export function Modal({ children }: { children: React.ReactNode }) {
     >
       <div className="bg-white rounded-lg p-6 max-w-2xl w-full mx-4">
         <button
-          onClick={() => router.back()} // ✅ Correct!
+          onClick={() => router.back()} // Correct!
           className="absolute top-4 right-4"
         >
-          ✕
+          Close
         </button>
         {children}
       </div>
@@ -243,7 +243,7 @@ Check your matcher:
 In Next.js 15+, `params` is a Promise:
 
 ```tsx
-// ✅ Correct
+// Correct
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
 }

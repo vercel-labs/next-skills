@@ -5,10 +5,10 @@ Use `next/image` for automatic image optimization.
 ## Always Use next/image
 
 ```tsx
-// ❌ Avoid native img
+// Bad: Avoid native img
 <img src="/hero.png" alt="Hero" />
 
-// ✅ Use next/image
+// Good: Use next/image
 import Image from 'next/image'
 <Image src="/hero.png" alt="Hero" width={800} height={400} />
 ```
@@ -130,23 +130,23 @@ Use `priority` for above-the-fold images (LCP):
 ## Common Mistakes
 
 ```tsx
-// ❌ Missing sizes with fill - downloads largest image
+// Bad: Missing sizes with fill - downloads largest image
 <Image src="/hero.png" alt="Hero" fill />
 
-// ✅ Add sizes for proper responsive behavior
+// Good: Add sizes for proper responsive behavior
 <Image src="/hero.png" alt="Hero" fill sizes="100vw" />
 
-// ❌ Using width/height for aspect ratio only
+// Bad: Using width/height for aspect ratio only
 <Image src="/hero.png" alt="Hero" width={16} height={9} />
 
-// ✅ Use actual display dimensions or fill with sizes
+// Good: Use actual display dimensions or fill with sizes
 <Image src="/hero.png" alt="Hero" fill sizes="100vw" style={{ objectFit: 'cover' }} />
 
-// ❌ Remote image without config
+// Bad: Remote image without config
 <Image src="https://untrusted.com/image.jpg" alt="Image" width={400} height={300} />
 // Error: Invalid src prop, hostname not configured
 
-// ✅ Add hostname to next.config.js remotePatterns
+// Good: Add hostname to next.config.js remotePatterns
 ```
 
 ## Static Export

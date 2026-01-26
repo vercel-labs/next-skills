@@ -11,14 +11,14 @@ Client components **cannot** be async functions. Only Server Components can be a
 **Detect:** File has `'use client'` AND component is `async function` or returns `Promise`
 
 ```tsx
-// ❌ INVALID: async client component
+// Bad: async client component
 'use client'
 export default async function UserProfile() {
   const user = await getUser() // Cannot await in client component
   return <div>{user.name}</div>
 }
 
-// ✅ FIX: Remove async, fetch data in parent server component
+// Good: Remove async, fetch data in parent server component
 // page.tsx (server component - no 'use client')
 export default async function Page() {
   const user = await getUser()
@@ -33,14 +33,14 @@ export function UserProfile({ user }: { user: User }) {
 ```
 
 ```tsx
-// ❌ INVALID: async arrow function client component
+// Bad: async arrow function client component
 'use client'
 const Dashboard = async () => {
   const data = await fetchDashboard()
   return <div>{data}</div>
 }
 
-// ✅ FIX: Fetch in server component, pass data down
+// Good: Fetch in server component, pass data down
 ```
 
 ### 2. Non-Serializable Props to Client Components
@@ -56,14 +56,14 @@ Props passed from Server → Client must be JSON-serializable.
 - Circular references
 
 ```tsx
-// ❌ INVALID: Function prop
+// Bad: Function prop
 // page.tsx (server)
 export default function Page() {
   const handleClick = () => console.log('clicked')
   return <ClientButton onClick={handleClick} />
 }
 
-// ✅ FIX: Define function inside client component
+// Good: Define function inside client component
 // ClientButton.tsx
 'use client'
 export function ClientButton() {
@@ -73,7 +73,7 @@ export function ClientButton() {
 ```
 
 ```tsx
-// ❌ INVALID: Date object (silently becomes string, then crashes)
+// Bad: Date object (silently becomes string, then crashes)
 // page.tsx (server)
 export default async function Page() {
   const post = await getPost()
@@ -86,7 +86,7 @@ export function PostCard({ createdAt }: { createdAt: Date }) {
   return <span>{createdAt.getFullYear()}</span> // Runtime error!
 }
 
-// ✅ FIX: Serialize to string on server
+// Good: Serialize to string on server
 // page.tsx (server)
 export default async function Page() {
   const post = await getPost()
@@ -102,20 +102,20 @@ export function PostCard({ createdAt }: { createdAt: string }) {
 ```
 
 ```tsx
-// ❌ INVALID: Class instance
+// Bad: Class instance
 const user = new UserModel(data)
 <ClientProfile user={user} /> // Methods will be stripped
 
-// ✅ FIX: Pass plain object
+// Good: Pass plain object
 const user = await getUser()
 <ClientProfile user={{ id: user.id, name: user.name }} />
 ```
 
 ```tsx
-// ❌ INVALID: Map/Set
+// Bad: Map/Set
 <ClientComponent items={new Map([['a', 1]])} />
 
-// ✅ FIX: Convert to array/object
+// Good: Convert to array/object
 <ClientComponent items={Object.fromEntries(map)} />
 <ClientComponent items={Array.from(set)} />
 ```
@@ -125,7 +125,7 @@ const user = await getUser()
 Functions marked with `'use server'` CAN be passed to client components.
 
 ```tsx
-// ✅ VALID: Server Action can be passed
+// Valid: Server Action can be passed
 // actions.ts
 'use server'
 export async function submitForm(formData: FormData) {
@@ -149,11 +149,11 @@ export function ClientForm({ onSubmit }: { onSubmit: (data: FormData) => Promise
 
 | Pattern | Valid? | Fix |
 |---------|--------|-----|
-| `'use client'` + `async function` | ❌ | Fetch in server parent, pass data |
-| Pass `() => {}` to client | ❌ | Define in client or use server action |
-| Pass `new Date()` to client | ❌ | Use `.toISOString()` |
-| Pass `new Map()` to client | ❌ | Convert to object/array |
-| Pass class instance to client | ❌ | Pass plain object |
-| Pass server action to client | ✅ | - |
-| Pass `string/number/boolean` | ✅ | - |
-| Pass plain object/array | ✅ | - |
+| `'use client'` + `async function` | No | Fetch in server parent, pass data |
+| Pass `() => {}` to client | No | Define in client or use server action |
+| Pass `new Date()` to client | No | Use `.toISOString()` |
+| Pass `new Map()` to client | No | Convert to object/array |
+| Pass class instance to client | No | Pass plain object |
+| Pass server action to client | Yes | - |
+| Pass `string/number/boolean` | Yes | - |
+| Pass plain object/array | Yes | - |

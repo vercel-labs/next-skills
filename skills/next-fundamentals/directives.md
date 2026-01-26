@@ -1,63 +1,10 @@
 # Directives
 
-Next.js specific directives for optimizing your application.
+## React Directives
 
-## 'use cache' (Experimental)
+These are React directives, not Next.js specific.
 
-Marks a function or component for caching.
-
-```tsx
-'use cache'
-
-export async function getCachedData() {
-  return await fetchData()
-}
-```
-
-### Usage Locations
-
-- **Top of file** - marks all exports as cached
-- **Inside async function** - inline caching
-
-### Cache Lifecycle
-
-```tsx
-'use cache'
-import { cacheLife } from 'next/cache'
-
-export async function getCachedData() {
-  cacheLife('hours')
-  return await fetchData()
-}
-```
-
-Available presets: `'seconds'`, `'minutes'`, `'hours'`, `'days'`, `'weeks'`, `'max'`
-
-### Cache Tags
-
-```tsx
-'use cache'
-import { cacheTag } from 'next/cache'
-
-export async function getPost(id: string) {
-  cacheTag(`post-${id}`)
-  return await fetchPost(id)
-}
-```
-
-Invalidate with:
-
-```tsx
-'use server'
-import { revalidateTag } from 'next/cache'
-
-export async function updatePost(id: string) {
-  await savePost(id)
-  revalidateTag(`post-${id}`)
-}
-```
-
-## 'use client'
+### `'use client'`
 
 Marks a component as a Client Component. Required for:
 - React hooks (`useState`, `useEffect`, etc.)
@@ -67,15 +14,19 @@ Marks a component as a Client Component. Required for:
 ```tsx
 'use client'
 
+import { useState } from 'react'
+
 export function Counter() {
   const [count, setCount] = useState(0)
   return <button onClick={() => setCount(count + 1)}>{count}</button>
 }
 ```
 
-## 'use server'
+Reference: https://react.dev/reference/rsc/use-client
 
-Marks a function as a Server Action. Can be passed to client components.
+### `'use server'`
+
+Marks a function as a Server Action. Can be passed to Client Components.
 
 ```tsx
 'use server'
@@ -85,7 +36,7 @@ export async function submitForm(formData: FormData) {
 }
 ```
 
-Or inline:
+Or inline within a Server Component:
 
 ```tsx
 export default function Page() {
@@ -96,3 +47,27 @@ export default function Page() {
   return <form action={submit}>...</form>
 }
 ```
+
+Reference: https://react.dev/reference/rsc/use-server
+
+---
+
+## Next.js Directive
+
+### `'use cache'`
+
+Marks a function or component for caching. Part of Next.js Cache Components.
+
+```tsx
+'use cache'
+
+export async function getCachedData() {
+  return await fetchData()
+}
+```
+
+Requires `cacheComponents: true` in `next.config.ts`.
+
+For detailed usage including cache profiles, `cacheLife()`, `cacheTag()`, and `updateTag()`, see the `next-cache-components` skill.
+
+Reference: https://nextjs.org/docs/app/api-reference/directives/use-cache

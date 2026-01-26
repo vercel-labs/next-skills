@@ -70,7 +70,7 @@ Reference: https://nextjs.org/docs/app/api-reference/functions/redirect#behavior
 import { redirect } from 'next/navigation'
 import { notFound } from 'next/navigation'
 
-// ❌ WRONG: try-catch catches the navigation "error"
+// Bad: try-catch catches the navigation "error"
 async function createPost(formData: FormData) {
   try {
     const post = await db.post.create({ ... })
@@ -81,7 +81,7 @@ async function createPost(formData: FormData) {
   }
 }
 
-// ✅ CORRECT: Call navigation APIs outside try-catch
+// Good: Call navigation APIs outside try-catch
 async function createPost(formData: FormData) {
   let post
   try {
@@ -92,7 +92,7 @@ async function createPost(formData: FormData) {
   redirect(`/posts/${post.id}`)  // Outside try-catch
 }
 
-// ✅ CORRECT: Re-throw navigation errors
+// Good: Re-throw navigation errors
 async function createPost(formData: FormData) {
   try {
     const post = await db.post.create({ ... })

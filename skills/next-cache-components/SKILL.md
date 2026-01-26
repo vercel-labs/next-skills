@@ -224,14 +224,14 @@ export async function createPost(data: FormData) {
 ### Solution: Pass as Arguments
 
 ```tsx
-// ❌ Wrong - runtime API inside use cache
+// Wrong - runtime API inside use cache
 async function CachedProfile() {
   'use cache'
   const session = (await cookies()).get('session')?.value  // Error!
   return <div>{session}</div>
 }
 
-// ✅ Correct - extract outside, pass as argument
+// Correct - extract outside, pass as argument
 async function ProfilePage() {
   const session = (await cookies()).get('session')?.value
   return <CachedProfile sessionId={session} />

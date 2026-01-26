@@ -20,14 +20,14 @@ Module not found: Can't resolve 'fs'
 If the package is only needed on client:
 
 ```tsx
-// ❌ Fails - package uses window
+// Bad: Fails - package uses window
 import SomeChart from 'some-chart-library'
 
 export default function Page() {
   return <SomeChart />
 }
 
-// ✅ Use dynamic import with ssr: false
+// Good: Use dynamic import with ssr: false
 import dynamic from 'next/dynamic'
 
 const SomeChart = dynamic(() => import('some-chart-library'), {
@@ -138,11 +138,11 @@ Turbopack is the default bundler in Next.js 15+. If you have custom webpack conf
 ```js
 // next.config.js
 module.exports = {
-  // ✅ Works with Turbopack
+  // Good: Works with Turbopack
   serverExternalPackages: ['package'],
   transpilePackages: ['package'],
 
-  // ❌ Webpack-only - migrate away from this
+  // Bad: Webpack-only - migrate away from this
   webpack: (config) => {
     // custom webpack config
   },

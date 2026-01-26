@@ -2,45 +2,100 @@
 
 Agent skills for common Next.js workflows.
 
-## Skills
+## Essential Skills
 
-| Skill | Description |
-|-------|-------------|
-| `next-upgrade` | Upgrade to the latest Next.js version following official migration guides |
-| `next-debug-tricks` | Speed up debugging - MCP endpoint, rebuild specific routes |
-| `next-fundamentals` | Background knowledge: file conventions, RSC boundaries, data patterns, async APIs, metadata, error handling, route handlers, image/font optimization, bundling (auto-applied) |
-| `next-caching` | Caching deep dive: 4 cache layers, fetch options, revalidation strategies, v14→v15 behavior changes (auto-applied) |
-| `next-parallel-routes` | Parallel and intercepting routes: modal patterns, default.tsx, route matchers |
-| `next-self-hosting` | Self-host Next.js without Vercel: standalone output, Docker, cache handlers, ISR |
-| `next-cache-components` | Next.js 16 caching: PPR, use cache directive, cache profiles, Cache Components |
+Start here. These background skills are auto-applied to prevent common mistakes.
+
+### `next-fundamentals`
+
+Core Next.js knowledge covering:
+
+| Topic | What You'll Learn |
+|-------|-------------------|
+| File Conventions | Project structure, special files (`page.tsx`, `layout.tsx`, `loading.tsx`), route segments, `middleware.ts` → `proxy.ts` (v16) |
+| RSC Boundaries | Server/Client Component rules, serialization constraints, `'use client'` placement |
+| Data Patterns | Server Components vs Server Actions vs Route Handlers, avoiding waterfalls, `Promise.all`, preload pattern |
+| Async APIs | Next.js 15+ async `params`, `searchParams`, `cookies()`, `headers()` |
+| Directives | `'use client'`, `'use server'`, `'use cache'` |
+| Error Handling | `error.tsx`, `global-error.tsx`, `not-found.tsx`, Server Action error patterns |
+| Route Handlers | `route.ts` conventions, GET/POST handlers, when to use vs Server Actions |
+| Metadata | Static/dynamic metadata, `generateMetadata`, OG images with `next/og` |
+| Image Optimization | `next/image`, remote images, `sizes`, blur placeholders, priority loading |
+| Font Optimization | `next/font`, Google Fonts, local fonts, Tailwind integration |
+| Bundling | Server-incompatible packages, ESM/CJS issues, Turbopack migration |
+| Hydration Errors | Common causes, debugging, fixes |
+
+### `next-caching`
+
+Understanding Next.js caching:
+
+| Topic | What You'll Learn |
+|-------|-------------------|
+| 4 Cache Layers | Request Memoization, Data Cache, Full Route Cache, Router Cache |
+| fetch() Options | `cache`, `next.revalidate`, `next.tags` |
+| Revalidation | `revalidatePath()` vs `revalidateTag()`, when to use each |
+| v14 → v15 Changes | Default behavior shift from cached to uncached |
+| Common Gotchas | Router Cache minimum, third-party libraries, stale-while-revalidate |
 
 ## Installation
 
 ```bash
-# List available skills
-npx skills add vercel-labs/next-skills --list
+# Install essentials (recommended)
+npx skills add vercel-labs/next-skills --skill next-fundamentals --skill next-caching
 
-# Install a specific skill
-npx skills add vercel-labs/next-skills --skill next-debug-tricks
-
-# Install multiple skills
-npx skills add vercel-labs/next-skills --skill next-upgrade --skill next-fundamentals
-
-# Install all skills
+# Or install everything
 npx skills add vercel-labs/next-skills
 ```
 
-## Related Skills
+## Advanced Use Cases
 
-For React-specific patterns (hooks, state management, component composition), install the React skills:
+Optional skills for specific needs. Install as needed and invoke via slash commands.
+
+### `next-upgrade`
+
+Upgrading between Next.js versions with official migration guides.
 
 ```bash
-npx skills add vercel-labs/agent-skills --skill react-best-practices
+npx skills add vercel-labs/next-skills --skill next-upgrade
+```
+
+### `next-debug-tricks`
+
+Speed up debugging with MCP endpoint and selective route rebuilding.
+
+```bash
+npx skills add vercel-labs/next-skills --skill next-debug-tricks
+```
+
+### `next-parallel-routes`
+
+Implement modal patterns with parallel and intercepting routes. Covers `default.tsx`, route matchers (`(.)`, `(..)`, `(...)`), and closing modals correctly.
+
+```bash
+npx skills add vercel-labs/next-skills --skill next-parallel-routes
+```
+
+### `next-self-hosting`
+
+Deploy Next.js without Vercel. Covers `output: 'standalone'`, Docker, PM2, cache handlers for multi-instance ISR, and what needs extra setup.
+
+```bash
+npx skills add vercel-labs/next-skills --skill next-self-hosting
+```
+
+### `next-cache-components`
+
+Next.js 16 Cache Components and PPR. Covers `cacheComponents: true`, `'use cache'` directive, cache profiles (`remote`, `private`), `cacheLife()`, `cacheTag()`, and `updateTag()`.
+
+```bash
+npx skills add vercel-labs/next-skills --skill next-cache-components
 ```
 
 ## Usage
 
-Once installed, invoke skills using slash commands:
+**Background skills** (`next-fundamentals`, `next-caching`) are automatically applied when relevant.
+
+**Slash commands** for advanced skills:
 
 ```
 /next-upgrade
@@ -50,35 +105,12 @@ Once installed, invoke skills using slash commands:
 /next-cache-components
 ```
 
-**Background skills** (like `next-fundamentals`, `next-caching`) are automatically applied by Claude when relevant - they don't appear in the slash command menu but provide context to prevent common mistakes.
+## Related Skills
 
-## Structure
+For React-specific patterns (hooks, state management, component composition):
 
-```
-next-skills/
-├── skills/
-│   ├── next-upgrade/SKILL.md
-│   ├── next-debug-tricks/SKILL.md
-│   ├── next-fundamentals/
-│   │   ├── SKILL.md              # Entry point
-│   │   ├── file-conventions.md   # Project structure, special files
-│   │   ├── rsc-boundaries.md     # RSC serialization rules
-│   │   ├── async-patterns.md     # Next.js 15 async APIs
-│   │   ├── runtime-selection.md  # Node.js vs Edge
-│   │   ├── directives.md         # use cache, use client, use server
-│   │   ├── data-patterns.md      # Server Components vs Actions vs Route Handlers
-│   │   ├── error-handling.md     # error.tsx, try-catch gotchas
-│   │   ├── route-handlers.md     # route.ts best practices
-│   │   ├── metadata.md           # Metadata API and OG images
-│   │   ├── image.md              # next/image optimization
-│   │   ├── font.md               # next/font optimization
-│   │   ├── bundling.md           # Package bundling issues
-│   │   └── hydration-error.md    # Hydration mismatch fixes
-│   ├── next-caching/SKILL.md     # Cache layers, revalidation, v15 changes
-│   ├── next-parallel-routes/SKILL.md  # Parallel & intercepting routes
-│   ├── next-self-hosting/SKILL.md   # Docker, ISR, cache handlers
-│   └── next-cache-components/SKILL.md  # PPR, use cache, cache profiles
-└── README.md
+```bash
+npx skills add vercel-labs/agent-skills --skill react-best-practices
 ```
 
 ## Contributing
@@ -90,7 +122,8 @@ Each skill follows the [Agent Skills open standard](https://github.com/anthropic
    ```yaml
    ---
    name: next-skill-name
-   description: Brief description (used for discovery and auto-suggestion)
+   description: Brief description
+   user-invocable: false  # for background skills
    ---
    ```
 3. For complex skills, add additional `.md` files and reference them from `SKILL.md`

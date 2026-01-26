@@ -5,10 +5,10 @@
 Use the default Node.js runtime for new routes and pages. Only use Edge runtime if the project already uses it or there's a specific requirement.
 
 ```tsx
-// ✅ Default - no runtime config needed (uses Node.js)
+// Good: Default - no runtime config needed (uses Node.js)
 export default function Page() { ... }
 
-// ⚠️ Only if already used in project or specifically required
+// Caution: Only if already used in project or specifically required
 export const runtime = 'edge'
 ```
 

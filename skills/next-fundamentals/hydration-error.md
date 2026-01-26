@@ -16,10 +16,10 @@ In development, click the hydration error to see the server/client diff.
 ### Browser-only APIs
 
 ```tsx
-// ❌ Causes mismatch - window doesn't exist on server
+// Bad: Causes mismatch - window doesn't exist on server
 <div>{window.innerWidth}</div>
 
-// ✅ Use client component with mounted check
+// Good: Use client component with mounted check
 'use client'
 import { useState, useEffect } from 'react'
 
@@ -35,10 +35,10 @@ export function ClientOnly({ children }: { children: React.ReactNode }) {
 Server and client may be in different timezones:
 
 ```tsx
-// ❌ Causes mismatch
+// Bad: Causes mismatch
 <span>{new Date().toLocaleString()}</span>
 
-// ✅ Render on client only
+// Good: Render on client only
 'use client'
 const [time, setTime] = useState<string>()
 useEffect(() => setTime(new Date().toLocaleString()), [])
@@ -47,10 +47,10 @@ useEffect(() => setTime(new Date().toLocaleString()), [])
 ### Random Values or IDs
 
 ```tsx
-// ❌ Random values differ between server and client
+// Bad: Random values differ between server and client
 <div id={Math.random().toString()}>
 
-// ✅ Use useId hook
+// Good: Use useId hook
 import { useId } from 'react'
 
 function Input() {
@@ -62,13 +62,13 @@ function Input() {
 ### Invalid HTML Nesting
 
 ```tsx
-// ❌ Invalid - div inside p
+// Bad: Invalid - div inside p
 <p><div>Content</div></p>
 
-// ❌ Invalid - p inside p
+// Bad: Invalid - p inside p
 <p><p>Nested</p></p>
 
-// ✅ Valid nesting
+// Good: Valid nesting
 <div><p>Content</p></div>
 ```
 
@@ -77,7 +77,7 @@ function Input() {
 Scripts that modify DOM during hydration.
 
 ```tsx
-// ✅ Use next/script with afterInteractive
+// Good: Use next/script with afterInteractive
 import Script from 'next/script'
 
 export default function Page() {

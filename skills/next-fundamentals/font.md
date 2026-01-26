@@ -180,32 +180,32 @@ const inter = Inter({
 ## Common Mistakes
 
 ```tsx
-// ❌ Importing font in every component
+// Bad: Importing font in every component
 // components/Button.tsx
 import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] }) // Creates new instance each time!
 
-// ✅ Import once in layout, use CSS variable
+// Good: Import once in layout, use CSS variable
 // app/layout.tsx
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
-// ❌ Using @import in CSS (blocks rendering)
+// Bad: Using @import in CSS (blocks rendering)
 /* globals.css */
 @import url('https://fonts.googleapis.com/css2?family=Inter');
 
-// ✅ Use next/font (self-hosted, no network request)
+// Good: Use next/font (self-hosted, no network request)
 import { Inter } from 'next/font/google'
 
-// ❌ Loading all weights when only using a few
+// Bad: Loading all weights when only using a few
 const inter = Inter({ subsets: ['latin'] }) // Loads all weights
 
-// ✅ Specify only needed weights (for non-variable fonts)
+// Good: Specify only needed weights (for non-variable fonts)
 const inter = Inter({ subsets: ['latin'], weight: ['400', '700'] })
 
-// ❌ Missing subset - loads all characters
+// Bad: Missing subset - loads all characters
 const inter = Inter({})
 
-// ✅ Always specify subset
+// Good: Always specify subset
 const inter = Inter({ subsets: ['latin'] })
 ```
 

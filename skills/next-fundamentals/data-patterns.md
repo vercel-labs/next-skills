@@ -7,19 +7,19 @@ Choose the right data fetching pattern for each use case.
 ```
 Need to fetch data?
 ├── From a Server Component?
-│   └── ✅ Fetch directly (no API needed)
+│   └── Use: Fetch directly (no API needed)
 │
 ├── From a Client Component?
 │   ├── Is it a mutation (POST/PUT/DELETE)?
-│   │   └── ✅ Server Action
+│   │   └── Use: Server Action
 │   └── Is it a read (GET)?
-│       └── ✅ Route Handler OR pass from Server Component
+│       └── Use: Route Handler OR pass from Server Component
 │
 ├── Need external API access (webhooks, third parties)?
-│   └── ✅ Route Handler
+│   └── Use: Route Handler
 │
 └── Need REST API for mobile app / external clients?
-    └── ✅ Route Handler
+    └── Use: Route Handler
 ```
 
 ## Pattern 1: Server Components (Preferred for Reads)
@@ -136,7 +136,7 @@ export async function POST(request: NextRequest) {
 ### Problem: Sequential Fetches
 
 ```tsx
-// ❌ BAD: Sequential waterfalls
+// Bad: Sequential waterfalls
 async function Dashboard() {
   const user = await getUser();        // Wait...
   const posts = await getPosts();      // Then wait...
@@ -149,7 +149,7 @@ async function Dashboard() {
 ### Solution 1: Parallel Fetching with Promise.all
 
 ```tsx
-// ✅ GOOD: Parallel fetching
+// Good: Parallel fetching
 async function Dashboard() {
   const [user, posts, comments] = await Promise.all([
     getUser(),
@@ -164,7 +164,7 @@ async function Dashboard() {
 ### Solution 2: Streaming with Suspense
 
 ```tsx
-// ✅ GOOD: Show content progressively
+// Good: Show content progressively
 import { Suspense } from 'react';
 
 async function Dashboard() {

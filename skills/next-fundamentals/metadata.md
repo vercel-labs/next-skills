@@ -106,10 +106,10 @@ Generate dynamic Open Graph images using `next/og`.
 3. **Avoid Edge runtime** - Use default Node.js runtime
 
 ```tsx
-// ✅ Correct
+// Good
 import { ImageResponse } from 'next/og'
 
-// ❌ Avoid
+// Bad
 // import { ImageResponse } from '@vercel/og'
 // export const runtime = 'edge'
 ```

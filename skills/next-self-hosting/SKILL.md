@@ -232,15 +232,15 @@ module.exports = class CacheHandler {
 
 | Feature | Single Instance | Multi-Instance | Notes |
 |---------|----------------|----------------|-------|
-| SSR | ✅ Works | ✅ Works | No special setup |
-| SSG | ✅ Works | ✅ Works | Built at deploy time |
-| ISR | ✅ Works | ⚠️ Needs cache handler | Filesystem cache breaks |
-| Image Optimization | ✅ Works | ✅ Works | CPU-intensive, consider CDN |
-| Middleware | ✅ Works | ✅ Works | Runs on Node.js |
-| Edge Runtime | ❌ Limited | ❌ Limited | Some features Node-only |
-| `revalidatePath/Tag` | ✅ Works | ⚠️ Needs cache handler | Must share cache |
-| `next/font` | ✅ Works | ✅ Works | Fonts bundled at build |
-| Draft Mode | ✅ Works | ✅ Works | Cookie-based |
+| SSR | Yes | Yes | No special setup |
+| SSG | Yes | Yes | Built at deploy time |
+| ISR | Yes | Needs cache handler | Filesystem cache breaks |
+| Image Optimization | Yes | Yes | CPU-intensive, consider CDN |
+| Middleware | Yes | Yes | Runs on Node.js |
+| Edge Runtime | Limited | Limited | Some features Node-only |
+| `revalidatePath/Tag` | Yes | Needs cache handler | Must share cache |
+| `next/font` | Yes | Yes | Fonts bundled at build |
+| Draft Mode | Yes | Yes | Cookie-based |
 
 ## Image Optimization
 

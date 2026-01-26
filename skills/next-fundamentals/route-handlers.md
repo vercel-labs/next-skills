@@ -30,10 +30,10 @@ export async function POST(request: Request) {
 app/
 ├── api/
 │   └── users/
-│       └── route.ts    # ✅ /api/users
+│       └── route.ts    # /api/users
 └── users/
-    ├── page.tsx        # ✅ /users (page)
-    └── route.ts        # ❌ Conflicts with page.tsx!
+    ├── page.tsx        # /users (page)
+    └── route.ts        # Warning: Conflicts with page.tsx!
 ```
 
 If you need both a page and an API at the same path, use different paths:
@@ -51,15 +51,15 @@ app/
 
 Route handlers run in a **Server Component-like environment**:
 
-- ✅ Can use `async/await`
-- ✅ Can access `cookies()`, `headers()`
-- ✅ Can use Node.js APIs
-- ❌ Cannot use React hooks
-- ❌ Cannot use React DOM APIs
-- ❌ Cannot use browser APIs
+- Yes: Can use `async/await`
+- Yes: Can access `cookies()`, `headers()`
+- Yes: Can use Node.js APIs
+- No: Cannot use React hooks
+- No: Cannot use React DOM APIs
+- No: Cannot use browser APIs
 
 ```tsx
-// ❌ This won't work - no React DOM in route handlers
+// Bad: This won't work - no React DOM in route handlers
 import { renderToString } from 'react-dom/server'
 
 export async function GET() {
@@ -135,11 +135,11 @@ return new Response(stream, {
 
 | Use Case | Route Handlers | Server Actions |
 |----------|----------------|----------------|
-| Form submissions | ❌ | ✅ |
-| Data mutations from UI | ❌ | ✅ |
-| Third-party webhooks | ✅ | ❌ |
-| External API consumption | ✅ | ❌ |
-| Public REST API | ✅ | ❌ |
+| Form submissions | No | Yes |
+| Data mutations from UI | No | Yes |
+| Third-party webhooks | Yes | No |
+| External API consumption | Yes | No |
+| Public REST API | Yes | No |
 | File uploads | Both work | Both work |
 
 **Prefer Server Actions** for mutations triggered from your UI.
