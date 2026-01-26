@@ -15,9 +15,10 @@ Core Next.js knowledge:
 - [Data Patterns](./skills/next-fundamentals/data-patterns.md) - Fetching and mutation strategies
 - [Async Patterns](./skills/next-fundamentals/async-patterns.md) - Next.js 15+ async APIs
 - [Directives](./skills/next-fundamentals/directives.md) - `'use client'`, `'use server'`, `'use cache'`
-- [Error Handling](./skills/next-fundamentals/error-handling.md) - Error boundaries and recovery
+- [Functions](./skills/next-fundamentals/functions.md) - Navigation hooks, server functions, generate functions
+- [Error Handling](./skills/next-fundamentals/error-handling.md) - Error boundaries and redirects
 - [Route Handlers](./skills/next-fundamentals/route-handlers.md) - API routes with `route.ts`
-- [Metadata](./skills/next-fundamentals/metadata.md) - SEO and OG images
+- [Metadata](./skills/next-fundamentals/metadata.md) - SEO, OG images, sitemaps
 - [Image](./skills/next-fundamentals/image.md) - `next/image` optimization
 - [Font](./skills/next-fundamentals/font.md) - `next/font` optimization
 - [Bundling](./skills/next-fundamentals/bundling.md) - Package compatibility

@@ -107,9 +107,75 @@ async function createPost(formData: FormData) {
 ```
 
 Same applies to:
-- `redirect()`
-- `permanentRedirect()`
-- `notFound()`
+- `redirect()` - 307 temporary redirect
+- `permanentRedirect()` - 308 permanent redirect
+- `notFound()` - 404 not found
+- `forbidden()` - 403 forbidden
+- `unauthorized()` - 401 unauthorized
+
+Use `unstable_rethrow()` to re-throw these errors in catch blocks:
+
+```tsx
+import { unstable_rethrow } from 'next/navigation'
+
+async function action() {
+  try {
+    // ...
+    redirect('/success')
+  } catch (error) {
+    unstable_rethrow(error) // Re-throws Next.js internal errors
+    return { error: 'Something went wrong' }
+  }
+}
+```
+
+## Redirects
+
+```tsx
+import { redirect, permanentRedirect } from 'next/navigation'
+
+// 307 Temporary - use for most cases
+redirect('/new-path')
+
+// 308 Permanent - use for URL migrations (cached by browsers)
+permanentRedirect('/new-url')
+```
+
+## Auth Errors
+
+Trigger auth-related error pages:
+
+```tsx
+import { forbidden, unauthorized } from 'next/navigation'
+
+async function Page() {
+  const session = await getSession()
+
+  if (!session) {
+    unauthorized() // Renders unauthorized.tsx (401)
+  }
+
+  if (!session.hasAccess) {
+    forbidden() // Renders forbidden.tsx (403)
+  }
+
+  return <Dashboard />
+}
+```
+
+Create corresponding error pages:
+
+```tsx
+// app/forbidden.tsx
+export default function Forbidden() {
+  return <div>You don't have access to this resource</div>
+}
+
+// app/unauthorized.tsx
+export default function Unauthorized() {
+  return <div>Please log in to continue</div>
+}
+```
 
 ## Not Found
 

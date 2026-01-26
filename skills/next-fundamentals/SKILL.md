@@ -43,15 +43,23 @@ See [runtime-selection.md](./runtime-selection.md) for:
 ## Directives
 
 See [directives.md](./directives.md) for:
-- `'use cache'` directive
-- Cache lifecycle options
+- `'use client'`, `'use server'` (React)
+- `'use cache'` (Next.js)
+
+## Functions
+
+See [functions.md](./functions.md) for:
+- Navigation hooks: `useRouter`, `usePathname`, `useSearchParams`, `useParams`
+- Server functions: `cookies`, `headers`, `draftMode`, `after`
+- Generate functions: `generateStaticParams`, `generateMetadata`
 
 ## Error Handling
 
 See [error-handling.md](./error-handling.md) for:
-- `error.tsx` and `global-error.tsx`
-- Server Actions: don't wrap `redirect()`/`notFound()` in try-catch
-- Not found handling
+- `error.tsx`, `global-error.tsx`, `not-found.tsx`
+- `redirect`, `permanentRedirect`, `notFound`
+- `forbidden`, `unauthorized` (auth errors)
+- `unstable_rethrow` for catch blocks
 
 ## Data Patterns
 

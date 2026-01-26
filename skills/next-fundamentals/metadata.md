@@ -48,6 +48,25 @@ export const getPost = cache(async (slug: string) => {
 })
 ```
 
+## Viewport
+
+Separate from metadata for streaming support:
+
+```tsx
+import type { Viewport } from 'next'
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#000000',
+}
+
+// Or dynamic
+export function generateViewport({ params }): Viewport {
+  return { themeColor: getThemeColor(params) }
+}
+```
+
 ## Title Templates
 
 In root layout for consistent naming:
@@ -71,7 +90,7 @@ Place these files in `app/` directory (or route segments):
 | `apple-icon.png` | Apple app icon |
 | `opengraph-image.png` | OG image |
 | `twitter-image.png` | Twitter card image |
-| `sitemap.ts` / `sitemap.xml` | Sitemap |
+| `sitemap.ts` / `sitemap.xml` | Sitemap (use `generateSitemaps` for multiple) |
 | `robots.ts` / `robots.txt` | Robots directives |
 | `manifest.ts` / `manifest.json` | Web app manifest |
 
@@ -224,3 +243,59 @@ ImageResponse uses Flexbox layout:
 - Use `display: 'flex'`
 - No CSS Grid support
 - Styles must be inline objects
+
+## Multiple OG Images
+
+Use `generateImageMetadata` for multiple images per route:
+
+```tsx
+// app/blog/[slug]/opengraph-image.tsx
+import { ImageResponse } from 'next/og'
+
+export async function generateImageMetadata({ params }) {
+  const images = await getPostImages(params.slug)
+  return images.map((img, idx) => ({
+    id: idx,
+    alt: img.alt,
+    size: { width: 1200, height: 630 },
+    contentType: 'image/png',
+  }))
+}
+
+export default async function Image({ params, id }) {
+  const images = await getPostImages(params.slug)
+  const image = images[id]
+  return new ImageResponse(/* ... */)
+}
+```
+
+## Multiple Sitemaps
+
+Use `generateSitemaps` for large sites:
+
+```tsx
+// app/sitemap.ts
+import type { MetadataRoute } from 'next'
+
+export async function generateSitemaps() {
+  // Return array of sitemap IDs
+  return [{ id: 0 }, { id: 1 }, { id: 2 }]
+}
+
+export default async function sitemap({
+  id,
+}: {
+  id: number
+}): Promise<MetadataRoute.Sitemap> {
+  const start = id * 50000
+  const end = start + 50000
+  const products = await getProducts(start, end)
+
+  return products.map((product) => ({
+    url: `https://example.com/product/${product.id}`,
+    lastModified: product.updatedAt,
+  }))
+}
+```
+
+Generates `/sitemap/0.xml`, `/sitemap/1.xml`, etc.
