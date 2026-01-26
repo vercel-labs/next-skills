@@ -6,33 +6,33 @@ Agent skills for common Next.js workflows.
 
 Start here. These background skills are auto-applied to prevent common mistakes.
 
-### `next-fundamentals`
+### `next-best-practice`
 
 Core Next.js knowledge:
 
-- [File Conventions](./skills/next-fundamentals/file-conventions.md) - Project structure and special files
-- [RSC Boundaries](./skills/next-fundamentals/rsc-boundaries.md) - Server/Client Component rules
-- [Data Patterns](./skills/next-fundamentals/data-patterns.md) - Fetching and mutation strategies
-- [Async Patterns](./skills/next-fundamentals/async-patterns.md) - Next.js 15+ async APIs
-- [Directives](./skills/next-fundamentals/directives.md) - `'use client'`, `'use server'`, `'use cache'`
-- [Functions](./skills/next-fundamentals/functions.md) - Navigation hooks, server functions, generate functions
-- [Runtime Selection](./skills/next-fundamentals/runtime-selection.md) - Node.js vs Edge runtime
-- [Error Handling](./skills/next-fundamentals/error-handling.md) - Error boundaries and redirects
-- [Route Handlers](./skills/next-fundamentals/route-handlers.md) - API routes with `route.ts`
-- [Metadata](./skills/next-fundamentals/metadata.md) - SEO, OG images, sitemaps
-- [Image](./skills/next-fundamentals/image.md) - `next/image` optimization
-- [Font](./skills/next-fundamentals/font.md) - `next/font` optimization
-- [Bundling](./skills/next-fundamentals/bundling.md) - Package compatibility
-- [Hydration Errors](./skills/next-fundamentals/hydration-error.md) - Debugging mismatches
-- [Parallel Routes](./skills/next-fundamentals/parallel-routes.md) - Modal patterns with intercepting routes
-- [Self-Hosting](./skills/next-fundamentals/self-hosting.md) - Docker, standalone output, ISR
-- [Debug Tricks](./skills/next-fundamentals/debug-tricks.md) - MCP endpoint, rebuild specific routes
+- [File Conventions](./skills/next-best-practice/file-conventions.md) - Project structure and special files
+- [RSC Boundaries](./skills/next-best-practice/rsc-boundaries.md) - Server/Client Component rules
+- [Data Patterns](./skills/next-best-practice/data-patterns.md) - Fetching and mutation strategies
+- [Async Patterns](./skills/next-best-practice/async-patterns.md) - Next.js 15+ async APIs
+- [Directives](./skills/next-best-practice/directives.md) - `'use client'`, `'use server'`, `'use cache'`
+- [Functions](./skills/next-best-practice/functions.md) - Navigation hooks, server functions, generate functions
+- [Runtime Selection](./skills/next-best-practice/runtime-selection.md) - Node.js vs Edge runtime
+- [Error Handling](./skills/next-best-practice/error-handling.md) - Error boundaries and redirects
+- [Route Handlers](./skills/next-best-practice/route-handlers.md) - API routes with `route.ts`
+- [Metadata](./skills/next-best-practice/metadata.md) - SEO, OG images, sitemaps
+- [Image](./skills/next-best-practice/image.md) - `next/image` optimization
+- [Font](./skills/next-best-practice/font.md) - `next/font` optimization
+- [Bundling](./skills/next-best-practice/bundling.md) - Package compatibility
+- [Hydration Errors](./skills/next-best-practice/hydration-error.md) - Debugging mismatches
+- [Parallel Routes](./skills/next-best-practice/parallel-routes.md) - Modal patterns with intercepting routes
+- [Self-Hosting](./skills/next-best-practice/self-hosting.md) - Docker, standalone output, ISR
+- [Debug Tricks](./skills/next-best-practice/debug-tricks.md) - MCP endpoint, rebuild specific routes
 
 ## Installation
 
 ```bash
 # Install essentials (recommended)
-npx skills add vercel-labs/next-skills --skill next-fundamentals
+npx skills add vercel-labs/next-skills --skill next-best-practice
 
 # Or install everything
 npx skills add vercel-labs/next-skills
@@ -60,7 +60,7 @@ npx skills add vercel-labs/next-skills --skill next-cache-components
 
 ## Usage
 
-**Background skills** (`next-fundamentals`) are automatically applied when relevant.
+**Background skills** (`next-best-practice`) are automatically applied when relevant.
 
 **Slash commands** for advanced skills:
 
