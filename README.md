@@ -13,6 +13,14 @@ Agent skills for common Next.js workflows.
 | `next-debug-tricks` | Speed up debugging - MCP endpoint, rebuild specific routes |
 | `next-fundamentals` | Background knowledge: RSC boundaries, async patterns, runtime selection, directives (auto-applied) |
 
+## Related Skills
+
+For React-specific patterns (hooks, state management, component composition), install the React skills:
+
+```bash
+npx skills add vercel-labs/agent-skills --skill react-best-practices
+```
+
 ## Installation
 
 ```bash
