@@ -23,6 +23,25 @@ Use when:
 - Migrating from old Next.js patterns
 - Converting client-side fetching to Server Components
 
+## Critical Rules
+
+Before implementing, understand these rules:
+
+1. **Await params INSIDE the cache boundary, not at page level**
+   - Pass `params` as a Promise to cached child components
+   - Await params inside the `'use cache'` function
+   - This keeps the page fully static/prerenderable
+
+2. **Cached components don't need Suspense**
+   - Cached components (`'use cache'`) are included in the static shell
+   - You can wrap them in Suspense, but the fallback won't show (resolves immediately)
+   - Dynamic (non-cached) components **require** Suspense to stream
+
+3. **All dynamic routes MUST have generateStaticParams**
+   - Every `[param]` route needs `generateStaticParams`
+   - Without it, pages may be treated as fully dynamic
+   - Return at least one param set (empty arrays cause build errors)
+
 ## Quick Start
 
 ### 1. Enable Cache Components
@@ -64,13 +83,18 @@ async function PostFeed() {
 import { Suspense } from 'react'
 import { cacheTag, cacheLife } from 'next/cache'
 
-// POST CONTENT - Long cache, content rarely changes
-async function PostContent({ postId }: { postId: string }) {
+// POST CONTENT - Cached, awaits params INSIDE cache boundary
+async function PostContent({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) {
   'use cache'
-  cacheTag(`post-${postId}`)
-  cacheLife('days')  // Long - post content is stable
+  const { id } = await params  // Await inside cache, not at page level
+  cacheTag(`post-${id}`)
+  cacheLife('days')
   
-  const post = await db.posts.findUnique({ where: { id: postId } })
+  const post = await db.posts.findUnique({ where: { id } })
   return (
     <article>
       <h1>{post.title}</h1>
@@ -79,23 +103,39 @@ async function PostContent({ postId }: { postId: string }) {
   )
 }
 
-// COMMENTS - Dynamic, streams after shell loads
-async function Comments({ postId }: { postId: string }) {
-  const comments = await db.comments.findMany({ where: { postId } })
+// COMMENTS - Dynamic (no cache), streams after shell loads
+async function Comments({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) {
+  const { id } = await params
+  const comments = await db.comments.findMany({ where: { postId: id } })
   return <CommentList comments={comments} />
 }
 
-// PAGE - Combines cached post + streaming comments
-export default async function PostPage({ params }) {
-  const { id } = await params
+// PAGE - Passes params Promise down, doesn't await
+export default async function PostPage({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) {
   return (
     <>
-      <PostContent postId={id} />
+      {/* Cached - included in static shell, NO Suspense */}
+      <PostContent params={params} />
+      
+      {/* Dynamic - streams at request time, NEEDS Suspense */}
       <Suspense fallback={<CommentsSkeleton />}>
-        <Comments postId={id} />
+        <Comments params={params} />
       </Suspense>
     </>
   )
+}
+
+// REQUIRED: All dynamic routes need generateStaticParams
+export function generateStaticParams() {
+  return [{ id: 'post-1' }, { id: 'post-2' }]  // At minimum
 }
 ```
 
@@ -119,18 +159,28 @@ Use `generateStaticParams` to pre-render popular posts at build time. Other post
 // app/post/[id]/page.tsx
 import { cacheTag, cacheLife } from 'next/cache'
 
-async function PostContent({ postId }: { postId: string }) {
+// Await params INSIDE the cache boundary
+async function PostContent({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) {
   'use cache'
-  cacheTag(`post-${postId}`)
+  const { id } = await params
+  cacheTag(`post-${id}`)
   cacheLife('days')
   
-  const post = await db.posts.findUnique({ where: { id: postId } })
+  const post = await db.posts.findUnique({ where: { id } })
   return <Article post={post} />
 }
 
-export default async function PostPage({ params }) {
-  const { id } = await params
-  return <PostContent postId={id} />
+// Page passes params Promise down - doesn't await
+export default async function PostPage({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) {
+  return <PostContent params={params} />
 }
 
 // Pre-render top 100 popular posts at build time
@@ -149,6 +199,38 @@ export async function generateStaticParams() {
 - Top 100 posts: Pre-rendered at build time, served instantly
 - All other posts: Rendered on first visit, then cached
 - Both benefit from `'use cache'` + `cacheLife('days')`
+
+### Alternative: Cache at Page Level (Simple Pages)
+
+For simple pages where everything can be cached together, you can put `'use cache'` on the page itself:
+
+```tsx
+// app/u/[username]/page.tsx - Entire page is one cache unit
+export default async function UserPage({
+  params,
+}: {
+  params: Promise<{ username: string }>
+}) {
+  'use cache'
+  const { username } = await params
+  cacheTag(`user-${username}`)
+  cacheLife('hours')
+  
+  const user = await db.users.findUnique({ where: { username } })
+  const posts = await db.posts.findMany({ where: { authorId: user.id } })
+  
+  return (
+    <>
+      <UserProfile user={user} />
+      <UserPosts posts={posts} />
+    </>
+  )
+}
+
+export function generateStaticParams() {
+  return [{ username: 'alice' }, { username: 'bob' }]
+}
+```
 
 ## Performance Audit Workflow
 
@@ -180,14 +262,25 @@ When optimizing a page, ask:
 
 ```
 Is this a shared, high-traffic page (feed, post, thread)?
-├── YES → Should content be cached?
-│   ├── Primary content (post body, title) → 'use cache' + cacheTag + cacheLife
+├── YES → For each component, ask: Can this be cached?
+│   │
+│   ├── YES (same for all users) → 'use cache' + cacheTag + cacheLife
+│   │   ├── NO Suspense needed (included in static shell)
 │   │   └── Needs immediate update on edit? → updateTag() in Server Action
-│   └── Secondary content (comments) → Can stream → wrap in <Suspense>
+│   │
+│   └── NO (user-specific or real-time) → No cache, wrap in <Suspense>
+│       └── Suspense enables streaming at request time
 │
-└── Is there user-specific content (auth, preferences)?
-    └── YES → Wrap in <Suspense> (streams at request time)
+└── Is this a dynamic route ([param])?
+    └── YES → MUST have generateStaticParams (return at least one param)
 ```
+
+**Suspense Rule:**
+
+| Component Type | Has `'use cache'`? | Suspense Required? |
+|----------------|-------------------|-------------------|
+| Cached content | Yes | No (optional - fallback won't show) |
+| Dynamic content | No | **Yes** - required for streaming |
 
 ## Key APIs
 
@@ -198,7 +291,8 @@ Is this a shared, high-traffic page (feed, post, thread)?
 | `cacheTag('posts')` | Tag for invalidation | Inside `'use cache'` scope |
 | `updateTag('posts')` | Immediate invalidation | Server Actions (user edits own content) |
 | `revalidateTag('posts', 'max')` | Background revalidation | Route Handlers (webhooks, external systems) |
-| `<Suspense>` | Define streaming boundary | User-specific or real-time content |
+| `<Suspense>` | Define streaming boundary | **Only** for dynamic (non-cached) content |
+| `generateStaticParams` | Pre-render dynamic routes | **Required** for all `[param]` routes |
 
 ### Cache Profiles
 
