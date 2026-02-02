@@ -93,3 +93,10 @@ Each skill follows the [Agent Skills open standard](https://github.com/anthropic
    ---
    ```
 3. For complex skills, add additional `.md` files and reference them from `SKILL.md`
+
+## Compatible Agents
+
+These skills work with:
+- [Claude Code](https://claude.com/product/claude-code)
+- [AdaL](https://sylph.ai/) - Self-evolving AI coding agent ([Docs](https://docs.sylph.ai/) | [GitHub](https://github.com/SylphAI-Inc/adal-cli))
+- And other agents supporting the [Agent Skills](https://agentskills.io) standard
