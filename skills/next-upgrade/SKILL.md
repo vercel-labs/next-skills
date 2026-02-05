@@ -13,7 +13,7 @@ Upgrade the current project to the latest Next.js version following official mig
 1. **Detect current version**: Read `package.json` to identify the current Next.js version and related dependencies (React, React DOM, etc.)
 
 2. **Fetch the latest upgrade guide**: Use WebFetch to get the official upgrade documentation:
-   - Codemods: https://nextjs.org/docs/app/building-your-application/upgrading/codemods
+   - Codemods: https://nextjs.org/docs/app/guides/upgrading/codemods
    - Version-specific guides (adjust version as needed):
      - https://nextjs.org/docs/app/guides/upgrading/version-16 
      - https://nextjs.org/docs/app/guides/upgrading/version-15
