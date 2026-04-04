@@ -83,6 +83,7 @@ See [metadata.md](./metadata.md) for:
 - `generateMetadata` function
 - OG image generation with `next/og`
 - File-based metadata conventions
+- Monorepo strategies (metadataBase, dynamic handlers)
 
 ## Image Optimization
 
