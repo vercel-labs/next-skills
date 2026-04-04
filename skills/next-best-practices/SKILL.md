@@ -109,6 +109,7 @@ See [bundling.md](./bundling.md) for:
 - Polyfills (already included)
 - ESM/CommonJS issues
 - Bundle analysis
+- Standalone output tracing excludes
 
 ## Scripts
 
