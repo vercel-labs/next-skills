@@ -76,7 +76,7 @@ npx skills add vercel-labs/next-skills --skill next-cache-components
 For React-specific patterns (hooks, state management, component composition):
 
 ```bash
-npx skills add vercel-labs/agent-skills --skill react-best-practices
+npx skills add vercel-labs/agent-skills --skill vercel-react-best-practices
 ```
 
 ## Contributing
