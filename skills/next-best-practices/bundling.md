@@ -178,3 +178,40 @@ module.exports = {
 ```
 
 Reference: https://nextjs.org/docs/app/building-your-application/upgrading/from-webpack-to-turbopack
+
+---
+
+# Standalone Output Tracing
+
+When using `output: 'standalone'` in a monorepo, Next.js attempts to trace and copy all necessary dependencies into the `.next/standalone` folder.
+
+## Excluding Problematic Dependencies
+
+If certain packages (e.g., native mobile dependencies, large assets, or broken symlinks) cause the build to crash during the tracing/copying phase, exclude them using `outputFileTracingExcludes`.
+
+```js
+// next.config.mjs
+
+// Bad: Relying on default tracing if it crashes on native dependencies
+export default {
+  output: 'standalone',
+}
+
+// Good: Explicitly excluding problematic paths or patterns from tracing
+/** @type {import('next').NextConfig} */
+export default {
+  output: 'standalone',
+  experimental: {
+    // Exclude native bindings or mobile-only packages that crash the bundler
+    outputFileTracingExcludes: {
+      '*': [
+        'node_modules/@react-native-community/netinfo',
+        'node_modules/react-native-device-info',
+        '**/*.map', // Also exclude source maps to reduce bundle size
+      ],
+    },
+  },
+}
+```
+
+Reference: https://nextjs.org/docs/app/api-reference/next-config-js/output#automatically-copying-traced-files
