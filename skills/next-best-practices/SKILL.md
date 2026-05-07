@@ -60,6 +60,7 @@ See [error-handling.md](./error-handling.md) for:
 - `redirect`, `permanentRedirect`, `notFound`
 - `forbidden`, `unauthorized` (auth errors)
 - `unstable_rethrow` for catch blocks
+- Unused error parameter renaming (`_error`)
 
 ## Data Patterns
 

@@ -225,3 +225,31 @@ app/
 │       └── page.tsx
 └── layout.tsx          # Errors here go to global-error.tsx
 ```
+
+---
+
+# Linting & Unused Parameters
+
+In monorepos with strict ESLint rules (like `@typescript-eslint/no-unused-vars`), empty `catch` blocks or unused error parameters can cause build failures.
+
+## Unused Error Parameter
+
+If you catch an error but don't need to use the `error` object (e.g., if you're just returning a generic failure message), rename the parameter to `_error`.
+
+```tsx
+// Bad: 'error' is defined but never used (ESLint error)
+try {
+  await db.save(data)
+} catch (error) {
+  return { success: false, message: 'Save failed' }
+}
+
+// Good: Renaming to '_error' satisfies the linter while keeping the catch block safe
+try {
+  await db.save(data)
+} catch (_error) {
+  return { success: false, message: 'Save failed' }
+}
+```
+
+**Tip:** In modern JavaScript/TypeScript (since ES2019), you can also omit the parameter entirely if it's not used: `catch { ... }`. However, renaming to `_error` is often preferred in monorepos to maintain consistency with existing patterns.
