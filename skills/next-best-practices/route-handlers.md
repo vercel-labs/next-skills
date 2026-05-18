@@ -144,3 +144,29 @@ return new Response(stream, {
 
 **Prefer Server Actions** for mutations triggered from your UI.
 **Use Route Handlers** for external integrations and public APIs.
+
+---
+
+# Favicon API Routes
+
+In complex monorepo environments, static `favicon.ico` files can sometimes cause build or routing issues. If converting a favicon to an API route, ensure it supports the standard request methods for web crawlers.
+
+```tsx
+// Bad: Converting favicon to API route but only exporting GET
+// app/favicon.ico/route.ts
+export async function GET() { 
+  return fetchFaviconFile() 
+}
+
+// Good: Explicit handlers for GET, HEAD, and OPTIONS to remain safe for crawlers
+// app/favicon.ico/route.ts
+export async function GET() { 
+  const icon = await fetchFaviconFile()
+  return new Response(icon, {
+    headers: { 'Content-Type': 'image/x-icon' }
+  })
+}
+
+export async function HEAD() { return new Response(null, { status: 200 }) }
+export async function OPTIONS() { return new Response(null, { status: 204 }) }
+```

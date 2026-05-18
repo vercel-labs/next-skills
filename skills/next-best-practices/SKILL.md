@@ -75,6 +75,7 @@ See [route-handlers.md](./route-handlers.md) for:
 - GET handler conflicts with `page.tsx`
 - Environment behavior (no React DOM)
 - When to use vs Server Actions
+- Favicon API route handlers
 
 ## Metadata & OG Images
 
