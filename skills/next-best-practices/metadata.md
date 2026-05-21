@@ -299,3 +299,55 @@ export default async function sitemap({
 ```
 
 Generates `/sitemap/0.xml`, `/sitemap/1.xml`, etc.
+
+---
+
+# Monorepo Metadata Strategies
+
+In complex monorepo architectures, metadata needs additional handling for absolute URLs and reliability.
+
+## Absolute URLs and metadataBase
+
+Next.js requires absolute URLs for Open Graph images and sitemaps. In a monorepo with multiple environments, use `metadataBase` to avoid hardcoding URLs.
+
+```tsx
+// layout.tsx or page.tsx
+
+// Bad: Hardcoded absolute URLs or relative paths that might fail in nested monorepo apps
+export const metadata = {
+  openGraph: {
+    images: ['https://prod.site.com/og.png'],
+  },
+}
+
+// Good: Using metadataBase with environment variables
+export const metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  openGraph: {
+    images: ['/og.png'], // Automatically becomes absolute
+  },
+}
+```
+
+## Dynamic Sitemaps & Robots (Route Handlers)
+
+If dynamic metadata files (`sitemap.ts`, `robots.ts`) cause prerender crashes or "no response returned" due to timing issues or database complexity, use explicit Route Handlers instead.
+
+```tsx
+// Bad: Relying on magic sitemap.ts if it consistently fails during build
+// app/sitemap.ts
+export default async function sitemap() { 
+  const data = await fetchLargeDatabase() // Might timeout/fail at build-time
+  return data.map(...) 
+}
+
+// Good: Explicit route handlers for more control and deterministic behavior
+// app/sitemap.xml/route.ts
+export async function GET() {
+  const data = await fetchLargeDatabase()
+  const xml = generateSitemapXml(data)
+  return new Response(xml, {
+    headers: { 'Content-Type': 'application/xml' }
+  })
+}
+```
