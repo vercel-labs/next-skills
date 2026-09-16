@@ -1,5 +1,9 @@
 # Next.js Agent Skills have moved
 
+<p>
+  <a href="https://vercel.com/labs#past-experiments"><img alt="Vercel Labs Experiment" src="https://img.shields.io/badge/Labs%20Experiment-000000.svg?style=for-the-badge&amp;logo=Vercel&amp;labelColor=000" height="28"></a>
+</p>
+
 The Next.js agent skills that used to live here now live in the Next.js
 repository, so they stay version-matched with the framework instead of
 drifting in a separate repo.
